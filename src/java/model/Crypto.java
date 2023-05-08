@@ -1,8 +1,7 @@
-package Model;
+package model;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.ServletContext;
 import org.apache.commons.codec.binary.*;
 
 
@@ -21,7 +20,7 @@ public class Crypto
 		}
 		return encryptedString;
 	}
-
+    
 	public static String decrypt(String codeDecrypt, byte[] key, String cip){
 		String decryptedString = null;
 		try{
