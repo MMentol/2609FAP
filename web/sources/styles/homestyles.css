@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
+:root{
+    /*    Colors!     */
+    --primary: #3A5A40;     
+    --secondary: #588157;
+    --tertiary: #A3B18A;
+    --accent: #ED7D3A;      /*    Orange, "Mango Tango"     */
+    --error: #EF2D56;     /*    Red, "Red Crayola"     */    
+    --dark: #363537;        /*    "Jet"     */
+    --largebg: #DAD7CD;     /*    Beige     */
+    
+    /*    Text!     */
+    --headings: 'Noto Serif', serif;
+    --headings2: 'Montserrat', sans-serif;
+    --body-text: 'Source Sans Pro', sans-serif;   
+    --special: 'Satisfy', cursive; 
+}
+
+/* Styling for elements applicable to all pages. */
+* {
+    box-sizing: border-box;
+}
+
+html, body {    
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+}
+
+header, footer {
+    flex: 0 1 auto;
+    width: 100%;
+    height: 10%;
+    min-height: 10%;
+    padding: 0 2rem 0;
+    background-color: var(--primary);    
+    color: #FFFFFF;
+    position: sticky;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    top: 0;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--headings2);
+    font-weight: bold;
+    bottom: 0;
+}
+
+footer p {
+    padding: 0 3rem;
+}
+
+header #site-logo {
+    height: 80px;
+}
+
+main {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--largebg);
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.emphasized {
+    color: var(--secondary);
+    font-weight: bold;
+}
+/* ----------          END       ---------- */
+
+.main-container {
+    margin: auto;
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.site-greetings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--headings);
+    font-size: 1.4rem;   
+    margin: 2.5rem 0;
+    color: #825108;    
+    text-shadow: 1px 1px 3px #AB8855;
+}
+
+.logo-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-holder #site-logo {
+    height: 40vh;
+}
+
+.logo-text-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    font-size: 2.6rem;
+    color: var(--secondary);
+    text-shadow: 2px 2px 3px var(--tertiary);
+    font-family: var(--special);
+}
+
+.button-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+.common-button {
+    margin: 0 2em;
+    border-style: solid;
+    border-color: var(--primary);
+    border-radius: 30px;
+    height: 70px;
+    width: 300px;
+    color: #FFFFFF;
+    background-color: var(--secondary);
+    font-family: var(--headings2);    
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all .2s ease-in-out;
+}
+
+.common-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 8px var(--tertiary);
+    transform: scale(1.15);    
+}
+
+.special-button {
+    border-color: var(--primary);
+    background-color: var(--tertiary);
+    transition: all .2s ease-in-out;
+}
+
+.special-button:hover {
+    cursor: help;
+    box-shadow: 0px 0px 8px var(--primary);
+    transform: scale(1.15);  
+}
+
+.line-break {
+    border-width: 4px;
+    color: var(--secondary);
+    border-style: solid none none;
+    margin: 3em 0;
+}
+
+.site-information {
+    margin-bottom: 2.5rem;
+}
+
+.site-information h2 {
+    text-align: center;
+    font-size: 44pt;
+    color: var(--secondary);
+    text-shadow: 2px 2px 3px var(--tertiary);
+    font-family: var(--special);
+}
+
+.body-text {
+    text-align: center;
+    font-family: var(--body-text);
+    color: var(--dark);
+    font-size: 16pt;
+}
