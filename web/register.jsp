@@ -5,5 +5,6 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <h1>register jsp</h1>
     </body>
 </html>
