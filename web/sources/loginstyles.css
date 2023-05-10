@@ -255,6 +255,6 @@ li.nav-item a {
 .header-text {
     text-align: right;
     font-family: var(--headings);
-    color: var(--dark);
+    color: var(--primary);
     font-size: 16pt;
 }
