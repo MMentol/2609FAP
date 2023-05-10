@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <!--> Web Application-related context parameters. <-->
+    <context-param>
+        <param-name>generalPhone</param-name>
+        <param-value>8123-4567</param-value>
+    </context-param>
+    <context-param>
+        <param-name>generalMail</param-name>
+        <param-value>totallyREALemail@iceCOOL.co</param-value>
+    </context-param>
+    <context-param>
+        <param-name>supportPhone</param-name>
+        <param-value>8765-4321</param-value>
+    </context-param>
+    <context-param>
+        <param-name>supportMail</param-name>
+        <param-value>totallyREALsupport@iceCOOL.co</param-value>
+    </context-param>
+    <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
+    
+    <!--> Database-related context parameters. <-->
+    <context-param>
+        <param-name>dbClass</param-name>
+        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+    </context-param>    
+    <context-param>
+        <param-name>dbUName</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPass</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbDriver</param-name>
+        <param-value>jdbc:derby</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbHost</param-name>
+        <param-value>localhost</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPort</param-name>
+        <param-value>1527</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbName</param-name>
+        <param-value>iceCoolDB</param-value>
+    </context-param>
+    <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
+    
+
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.LoginServlet</servlet-class>
@@ -20,12 +72,19 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
     <welcome-file-list>
         <welcome-file>landing.jsp</welcome-file>
     </welcome-file-list>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error-404.jsp</location>
+    </error-page>
 </web-app>
