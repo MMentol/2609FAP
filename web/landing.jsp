@@ -39,15 +39,22 @@
                     <p class="body-text"><span class="emphasized">iceCOOL.co</span> is an aircon shop.</p>
                     <p class="body-text">By shopping at <span class="emphasized">iceCOOL.co</span>, u can get aircon</p>
                     <p class="body-text">We hope you have a wonderful time exploring our large selection of aircons!</p>
+                    <img id="product-sample" src="${pageContext.request.contextPath}/sources/img/samsung.webp">
                 </div>
+                <br>
+                <br>
                 <hr class="line-break">
                 <hr class="line-break">
+                <br>
+                <br>
                 <hr class="line-break">
                 <hr class="line-break">
+                <br>
+                <br>
                 <hr class="line-break">
                 <hr class="line-break">
-                <hr class="line-break">
-                <hr class="line-break">
+                <br>
+                <br>
                 <div class="contact-info" id="contact-info">
                     <h2>this should be contact</h2>
                     <p class="body-text"><span class="emphasized">iceCOOL.co</span> is an aircon shop.</p>
