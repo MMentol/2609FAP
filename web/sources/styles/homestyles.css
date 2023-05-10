@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
@@ -22,7 +22,7 @@
     
     
     /*    Text!     */
-    --headings: 'Noto Serif', serif;
+    --headings: 'Arvo', serif;
     --headings2: 'Montserrat', sans-serif;
     --body-text: 'Rubik', sans-serif;   
     --special: 'Pacifico', cursive; 
@@ -41,15 +41,15 @@ html, body {
     padding: 0;
     display: flex;
     flex-flow: column;
+    background-color: var(--background); 
 }
 
 header, footer {
     flex: 0 1 auto;
     width: 100%;
-    height: 10%;
-    min-height: 10%;
-    padding: 0 3rem 0;
-    background-color: var(--primary);    
+    height: 13%;
+    min-height: 13%;
+    padding: 0 3rem 0;   
     color: #FFFFFF;
     position: sticky;
 }
@@ -60,6 +60,8 @@ header {
     align-items: center;
     color: #FFFFFF;
     top: 0;
+    position: fixed;
+    background-image: linear-gradient(var(--primary) 60%, var(--tertiary) 90%, rgba(0,0,0,0));
 }
 
 footer {
@@ -68,7 +70,7 @@ footer {
     align-items: center;
     font-family: var(--headings2);
     font-weight: bold;
-    bottom: 0;
+    background-color: var(--primary);
 }
 
 footer p {
@@ -85,6 +87,7 @@ main {
     justify-content: center;
     align-items: center;
     background-color: var(--background);
+    margin-top: 8%;
 }
 
 a:hover {
@@ -100,7 +103,7 @@ a:hover {
     height: 20vh;
     width: 10vw;
     object-fit: fill;
-    margin-right: 40vw;
+    margin-right: 25vw;
 }
 
 .nav-bar {
@@ -120,7 +123,7 @@ a:hover {
 li.nav-item {
     list-style: none;
     font-weight: bolder;
-    font-size: 28px;
+    font-size: 32px;
 }
 
 li.nav-item:hover {
@@ -134,14 +137,25 @@ li.nav-item a {
     display: block; 
     height: 100%;
 }
+
 /* ----------          END       ---------- */
+
+#site-information-anchor, #product-offerings-anchor, #contact-info-anchor {
+    position: relative;
+    top: -100px;
+}
+
+.tagline {
+    font-family: var(--special);
+    font-size: 1.8rem;
+}
 
 .main-container {
     margin: auto;
     padding: auto;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 80%;
 }
 
 .site-greetings {
@@ -171,18 +185,6 @@ li.nav-item a {
     padding: 0 0;
 }
 
-
-.logo-text-holder {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 30%;
-    font-size: 2.6rem;
-    color: var(--secondary);
-    text-shadow: 2px 2px 3px var(--tertiary);
-    font-family: var(--special);
-}
-
 .button-holder {
     display: flex;
     justify-content: center;
@@ -202,25 +204,25 @@ li.nav-item a {
     font-family: var(--headings2);    
     font-size: 1.2rem;
     font-weight: bold;
-    transition: all .2s ease-in-out;
+    transition: all .15s ease-in-out;
 }
 
 .common-button:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 8px var(--tertiary);
-    transform: scale(1.15);    
+    box-shadow: 0px 0px 8px var(--highlights);
+    transform: scale(1.1);    
 }
 
 .special-button {
     border-color: var(--primary);
     background-color: var(--tertiary);
-    transition: all .2s ease-in-out;
+    transition: all .15s ease-in-out;
 }
 
 .special-button:hover {
     cursor: help;
-    box-shadow: 0px 0px 8px var(--primary);
-    transform: scale(1.15);  
+    box-shadow: 0px 0px 8px var(--highlights);
+    transform: scale(1.1);  
 }
 
 .line-break {
@@ -230,16 +232,21 @@ li.nav-item a {
     margin: 3em 0;
 }
 
-.site-information {
+.site-information, .product-offerings, .contact-info {
     margin-bottom: 2.5rem;
 }
 
-.site-information h2 {
+.main-container .body-text:not(.showcase), .main-container .header-text {
+    text-align: justify;
+    text-justify: auto;
+}
+
+.header-text {
     text-align: center;
     font-size: 44pt;
     color: var(--secondary);
-    text-shadow: 2px 2px 3px var(--tertiary);
-    font-family: var(--special);
+    text-shadow: 2px 2px 4px #C0C0C0;
+    font-family: var(--headings);
 }
 
 .body-text {
@@ -248,3 +255,29 @@ li.nav-item a {
     color: var(--dark);
     font-size: 16pt;
 }
+
+/* Styling for product image gallery */
+.gallery-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px 10px;
+}
+
+.gallery-container #product-sample {
+  width: 350px;
+  height: 350px;
+  min-height: 100%;
+  display: block;
+  max-width: 50%;
+  object-fit: fill;
+  background: #FFFFFF;
+  border: solid 3.5px var(--highlights);
+}
+
+/* --------------- END ---------------*/

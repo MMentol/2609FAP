@@ -12,8 +12,9 @@
             <nav class="nav-bar">                
                 <a class="toLanding" href="landing.jsp"><img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png"></a>   
                 <ul class="nav-list">                                        
-                    <li class="nav-item"><a href="#site-info">INFO</a></li>
-                    <li class="nav-item"><a href="#contact-info">CONTACT</a></li>
+                    <li class="nav-item"><a href="#site-information-anchor">INFO</a></li>
+                    <li class="nav-item"><a href="#product-offerings-anchor">PRODUCTS</a></li>
+                    <li class="nav-item"><a href="#contact-info-anchor">CONTACT</a></li>
                 </ul>
             </nav>
         </header>
@@ -24,42 +25,53 @@
                     <div class="logo-holder"> 
                         <img id="site-logo" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_MAIN.png">
                         <img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_B.png">
+                        <p class="tagline">Calm down and cool down.</p>
                     </div>
                 </div>    
                 <br>
                 <div class="button-holder">
-                    <a class="toLogin" href="login.jsp"><button class="common-button">User Log In</button></a>
-                    <a class="toShop" href="shop.jsp"><button class="common-button">Browse Shop</button></a>
-                    <!-->href="${pageContext.request.contextPath}/sources/documentation.pdf"<-->
+                    <a class="toLogin" href="login.jsp"><button class="common-button">Log into an Account</button></a>
+                    <a class="toShop" href="register.jsp"><button class="common-button">Sign Up for an Account</button></a>
+                    <%-->href="${pageContext.request.contextPath}/sources/documentation.pdf"<--%>
                     <a class="toShop"  target="_blank"><button class="special-button common-button">Check Documentation</button></a>
                 </div>     
                 <hr class="line-break">
-                <div class="site-info" id="site-info">
-                    <h2>this should be site info</h2>
-                    <p class="body-text"><span class="emphasized">iceCOOL.co</span> is an aircon shop.</p>
-                    <p class="body-text">By shopping at <span class="emphasized">iceCOOL.co</span>, u can get aircon</p>
-                    <p class="body-text">We hope you have a wonderful time exploring our large selection of aircons!</p>
-                    <img id="product-sample" src="${pageContext.request.contextPath}/sources/img/samsung.webp">
+                <div id="site-information-anchor"></div>
+                <div class="site-information" id="site-information">
+                    <h2 class="header-text">About iceCOOL.co?</h2>
+                    <p class="body-text"><span class="emphasized">iceCOOL.co</span> (i-se-kool dot koh) is a small start-up resale company founded by a group of friends 
+                        offering premium cooling and air-conditioning electronic products of the same quality as the manufacturers themselves but at a lower price!</p>
+                    <br>
+                    <p class="body-text"><span class="emphasized">iceCOOL.co</span> prides itself with its user-friendly service which provides benefits such as free 
+                        shipping, delivery, and in-house installation along with credit payment options to all our customers, available right from the comfort of their homes 
+                        without the need to go to any physical store whatsoever.</p>
+                    <br>
+                    <p class="body-text">Currently, we only have a limited stock of air-conditioning units to help beat the summer heat. However, we will be able to expand our 
+                        inventory and provide even more and even better products with your continued support and patronage!</p>
                 </div>
-                <br>
-                <br>
                 <hr class="line-break">
+                <div id="product-offerings-anchor"></div>
+                <div class="product-offerings" id="product-offerings">
+                    <h2 class="header-text">Product Offerings</h2>
+                    <p class="body-text showcase">Here are some of the available products we currently have on stock!</p>
+                    <div class="gallery-container">
+                        <img id="product-sample" alt="an air conditioning unit." src="${pageContext.request.contextPath}/sources/img/samsung.webp">
+                        <img id="product-sample" alt="another air conditioning unit." src="${pageContext.request.contextPath}/sources/img/panasonic1.png">
+                        <img id="product-sample" alt="yet another air conditioning unit." src="${pageContext.request.contextPath}/sources/img/lg.webp">
+                        <img id="product-sample" alt="it's... another air conditioning unit." src="${pageContext.request.contextPath}/sources/img/fuji.jpg">
+                        <img id="product-sample" alt="WAIT... it's another air conditioning unit." src="${pageContext.request.contextPath}/sources/img/carrier.webp">
+                        <img id="product-sample" alt="NO WAY... it's ANOTHER air conditioning unit..." src="${pageContext.request.contextPath}/sources/img/panasonic2.jpg">
+                    </div>                    
+                </div>
                 <hr class="line-break">
-                <br>
-                <br>
-                <hr class="line-break">
-                <hr class="line-break">
-                <br>
-                <br>
-                <hr class="line-break">
-                <hr class="line-break">
-                <br>
-                <br>
+                <div id="contact-info-anchor"></div>
                 <div class="contact-info" id="contact-info">
-                    <h2>this should be contact</h2>
-                    <p class="body-text"><span class="emphasized">iceCOOL.co</span> is an aircon shop.</p>
-                    <p class="body-text">By shopping at <span class="emphasized">iceCOOL.co</span>, u can get aircon</p>
-                    <p class="body-text">We hope you have a wonderful time exploring our large selection of aircons!</p>
+                    <h2 class="header-text">Contact Us!</h2>
+                    <p class="body-text">You may reach out to us by calling <span class="emphasized"><%= pageContext.getServletContext().getInitParameter("generalPhone").toString() %></span> or by sending us an email 
+                        at <span class="emphasized"><%= pageContext.getServletContext().getInitParameter("generalMail").toString() %></span> for any general concerns or queries you have about <span class="emphasized">iceCOOL.co</span>.</p>
+                    <br>
+                    <p class="body-text">For any concerns with your <span class="emphasized">iceCOOL.co</span> products, please call our customer support hotline at <span class="emphasized"><%= pageContext.getServletContext().getInitParameter("supportPhone").toString() %></span> 
+                        or send an email to <span class="emphasized"><%= pageContext.getServletContext().getInitParameter("supportMail").toString() %></span> to get in touch with a service representative.</p>
                 </div>
             </div>
         </main>
