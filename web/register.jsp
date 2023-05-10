@@ -26,8 +26,8 @@
         <main>
             <div class="half-side">
                 <img id="site-logo" src="${pageContext.request.contextPath}/sources/iceCOOL_MAIN.png">
-                <p class="body-text">You’re only one step away from accessing the wonders of our bountiful harvest!</p>
-                <p class="body-text">Just enter your <span class="emphasized">username</span> and <span class="emphasized">password</span> on the respective fields provided.</p>
+                <p class="body-text">You’re only one step away from accessing the wonderful stores of air conditioners to beat the summer heat!</p>
+                <p class="body-text">Create an account by selecting a <span class="emphasized">username</span> and <span class="emphasized">password</span> then accomplish the <span class="emphasized"> captcha</span> to proceed.</p>
             </div>
             <hr class="line-break">
             <div class="half-side">
