@@ -1,5 +1,8 @@
-package java.controller;
+package controller;
 
-public class CheckoutHandler {
+
+import javax.servlet.http.HttpServlet;
+
+public class CheckoutHandler extends HttpServlet {
     
 }
