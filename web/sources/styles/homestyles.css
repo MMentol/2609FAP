@@ -140,7 +140,7 @@ li.nav-item a {
 
 /* ----------          END       ---------- */
 
-#site-information-anchor, #product-offerings-anchor, #contact-info-anchor {
+#site-information-a, #product-offerings-a, #contact-info-a {
     position: relative;
     top: -100px;
 }

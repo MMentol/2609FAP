@@ -12,9 +12,9 @@
             <nav class="nav-bar">                
                 <a class="toLanding" href="landing.jsp"><img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png"></a>   
                 <ul class="nav-list">                                        
-                    <li class="nav-item"><a href="#site-information-anchor">INFO</a></li>
-                    <li class="nav-item"><a href="#product-offerings-anchor">PRODUCTS</a></li>
-                    <li class="nav-item"><a href="#contact-info-anchor">CONTACT</a></li>
+                    <li class="nav-item"><a href="#site-information-a">INFO</a></li>
+                    <li class="nav-item"><a href="#product-offerings-a">PRODUCTS</a></li>
+                    <li class="nav-item"><a href="#contact-info-a">CONTACT</a></li>
                 </ul>
             </nav>
         </header>
@@ -36,7 +36,7 @@
                     <a class="toShop"  target="_blank"><button class="special-button common-button">Check Documentation</button></a>
                 </div>     
                 <hr class="line-break">
-                <div id="site-information-anchor"></div>
+                <div id="site-information-a"></div>
                 <div class="site-information" id="site-information">
                     <h2 class="header-text">About iceCOOL.co?</h2>
                     <p class="body-text"><span class="emphasized">iceCOOL.co</span> (i-se-kool dot koh) is a small start-up resale company founded by a group of friends 
@@ -50,7 +50,7 @@
                         inventory and provide even more and even better products with your continued support and patronage!</p>
                 </div>
                 <hr class="line-break">
-                <div id="product-offerings-anchor"></div>
+                <div id="product-offerings-a"></div>
                 <div class="product-offerings" id="product-offerings">
                     <h2 class="header-text">Product Offerings</h2>
                     <p class="body-text showcase">Here are some of the available products we currently have on stock!</p>
@@ -64,7 +64,7 @@
                     </div>                    
                 </div>
                 <hr class="line-break">
-                <div id="contact-info-anchor"></div>
+                <div id="contact-info-a"></div>
                 <div class="contact-info" id="contact-info">
                     <h2 class="header-text">Contact Us!</h2>
                     <p class="body-text">You may reach out to us by calling <span class="emphasized"><%= pageContext.getServletContext().getInitParameter("generalPhone").toString() %></span> or by sending us an email 
