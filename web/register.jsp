@@ -19,6 +19,7 @@
         <header>
             <nav class="nav-bar">                
                 <a class="toLanding" href="landing.jsp"><img id="site-logo" src="${pageContext.request.contextPath}/sources/iceCOOL_MAIN.png"></a>
+                <p class="header-text" href="landing.jsp">HOME</p>
             </nav>
         </header>
             
@@ -37,7 +38,11 @@
                     <h2>PASSWORD</h2>
                     <input type="password" id="password" name="password" class="text-entry" maxlength="20" required>
                     <div class="spacer"></div>
-                    <input type="submit" class="special-button" value="Log In">                    
+                    <img src="SimpleCaptcha" alt="Captcha"/><br>
+                    <h1>Enter Captcha:</h1>
+                    <input type="text" name="captcha-input" required>
+                    <div class="spacer"></div>
+                    <input type="submit" class="special-button" value="Sign Up">                    
                     <h3 class="error-text"></h3>
                 </form>                
             </div>                 

@@ -77,6 +77,7 @@ footer p {
 
 header #site-logo {
     height: 80px;
+    
 }
 
 main {
@@ -169,6 +170,8 @@ li.nav-item a {
     height: 40vh;
     margin: 0 0;
     padding: 0 0;
+    position:relative;
+    left: 80px;
 }
 
 
@@ -245,6 +248,13 @@ li.nav-item a {
 .body-text {
     text-align: center;
     font-family: var(--body-text);
+    color: var(--dark);
+    font-size: 16pt;
+}
+
+.header-text {
+    text-align: right;
+    font-family: var(--headings);
     color: var(--dark);
     font-size: 16pt;
 }
