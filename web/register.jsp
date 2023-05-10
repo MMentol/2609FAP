@@ -18,13 +18,13 @@
         %>
         <header>
             <nav class="nav-bar">                
-                <a class="toLanding" href="landing.jsp"><img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogowhite.png"></a>
+                <a class="toLanding" href="landing.jsp"><img id="site-logo" src="${pageContext.request.contextPath}/sources/iceCOOL_MAIN.png"></a>
             </nav>
         </header>
             
         <main>
             <div class="half-side">
-                <img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogoblack.png">
+                <img id="site-logo" src="${pageContext.request.contextPath}/sources/iceCOOL_MAIN.png">
                 <p class="body-text">You’re only one step away from accessing the wonders of our bountiful harvest!</p>
                 <p class="body-text">Just enter your <span class="emphasized">username</span> and <span class="emphasized">password</span> on the respective fields provided.</p>
             </div>
@@ -44,8 +44,8 @@
         </main>
                 
         <footer>
-            <div class="footer-text"><p>This website was created in fulfillment of the course requirements for ICS2608.</p></div>
-            <div class="footer-text"><p>Made By: Articulo, De Leon, T., Macuja, Robles, J. - 2CSB</p></div>      
+            <div class="footer-text"><p>This website was created in fulfillment of the course requirements for ICS2609.</p></div>
+            <div class="footer-text"><p>Made By: Articulo, De Leon, T., Robles, J. - 2CSB</p></div>      
         </footer>
                 
     </body>    
