@@ -109,7 +109,7 @@ a:hover {
 .nav-bar {
     display: flex;
     justify-content: space-around;
-    align-items: center;    
+    align-items: center;  
     font-family: var(--headings2);    
 }
 
@@ -139,6 +139,10 @@ li.nav-item a {
 }
 
 /* ----------          END       ---------- */
+#home {
+    position: relative;
+    top: -100px;
+}
 
 .main-container {
     margin: auto;
@@ -261,4 +265,7 @@ li.nav-item a {
     font-family: var(--headings);
     
     font-size: 16pt;
+}
+.home{
+    margin-bottom: 2.5rem;
 }

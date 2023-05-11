@@ -19,7 +19,10 @@
         <header>
             <nav class="nav-bar">                
                 <a class="toLanding" href="landing.jsp"><img id="site-logo" src="${pageContext.request.contextPath}/sources/iceCOOL_MAIN.png"></a>
-                <p class="header-text" href="landing.jsp">HOME</p>
+                 <ul class="nav-list">                                        
+                    <li class="nav-item"><a href="#home">HOME</a></li>
+                    
+                </ul>
             </nav>
         </header>
             
