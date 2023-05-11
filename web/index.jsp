@@ -11,7 +11,7 @@
         <h2>Proper functionality not ensured (ie session dependent functions).</h2>
         <br>
         <hr>
-        <br>main pages
+        <br>main pages<br>
         <a href="landing.jsp"><button>Landing Page</button></a><br>
         <a href="login.jsp"><button>Login Page</button></a><br>
         <a href="register.jsp"><button>Registration Page</button></a><br>
@@ -19,7 +19,7 @@
         <a href="shop.jsp"><button>Shop Page</button></a><br>
         <a href="checkout.jsp"><button>Checkout Page</button></a><br>
         <a href="success.jsp"><button>Checkout Success Page</button></a><br>
-        error pages
+        <br>error pages<br>
         <a href="error-404.jsp"><button>Error 404</button></a><br>
         <br>
         <hr>
