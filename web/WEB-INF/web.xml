@@ -18,6 +18,10 @@
         <param-name>supportMail</param-name>
         <param-value>totallyREALsupport@iceCOOL.co</param-value>
     </context-param>
+    <context-param>
+        <param-name>pubKey</param-name>
+        <param-value>FAP_2609</param-value>
+    </context-param>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
     
     <!--> Database-related context parameters. <-->
@@ -51,7 +55,7 @@
     </context-param>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
     
-    <!--> Servlet init <-->
+    <!--> Servlet Declarations <-->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>controller.LoginServlet</servlet-class>
@@ -67,6 +71,10 @@
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomCaptcha</servlet-name>
+        <servlet-class>model.CustomSimpleCaptcha</servlet-class>
     </servlet>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
     
@@ -86,6 +94,10 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomCaptcha</servlet-name>
+        <url-pattern>/CustomCaptcha</url-pattern>
     </servlet-mapping>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
 
