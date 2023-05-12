@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginServlet extends HttpServlet {
+
     Connection dbConnection;
     String publicKey;
     int loginAttempts; 
@@ -78,6 +79,55 @@ public class LoginServlet extends HttpServlet {
                 - Register servlet will prevent users from having the same usernames/emails.
                     Statement will always return exactly one user if the entered credentials are correct.
         */
+      if (!captcha.isCorrect(answer)) {
+            
+            response.sendRedirect("login.jsp");
+            request.getSession().setAttribute("failCaptcha", "Captcha verification failed, please try again!");
+            return;
+        }
+        if (totalAttempts >= 3 || (cUser.getAttribute("attempts") == null)) {
+            totalAttempts = 0;
+        }
+        try {
+            // Create and Execute the query
+            Statement state = dbConnection.createStatement();
+            String dbQuery = "SELECT * FROM USERS ORDER BY EMAIL";
+            ResultSet rs = state.executeQuery(dbQuery);
+            
+            HttpSession session = request.getSession();
+            while(rs.next())
+            {
+                if (uname.equals(rs.getString("EMAIL")) && pass.equals(Crypto.decrypt(rs.getString("PASSWORD"), key, cip)))
+                {
+                    //if login attempt is valid
+                    session.setAttribute("EMAIL", rs.getString("EMAIL") );
+                    session.setAttribute("PASSWORD", rs.getString("PASSWORD") );
+                    session.setAttribute("ROLE", rs.getString("USERROLE") );
+                    totalAttempts = 0;
+                    if (rs.getString("USERROLE").equals("admin")){
+                        response.sendRedirect("adminpage.jsp");
+                        rs.close(); 
+                        
+                    } else if(rs.getString("USERROLE").equals("guest")){
+                        response.sendRedirect("userpage.jsp");
+                        rs.close(); 
+                        
+                    }
+                    return;
+                }
+                
+                
+                    
+            }
+            totalAttempts++;
+            cUser.setAttribute("attempts", totalAttempts);
+            cUser.setAttribute("incorrectMsg", "Your username or password is incorrect. You have " + (3 - totalAttempts) + " attempts remaining.");
+            response.sendRedirect("inputerror.jsp"); 
+            }
+            catch (SQLException e) {
+                cUser.setAttribute("unconnectMsg", "Unable to connect to database.");
+                response.sendRedirect("login.jsp");
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -119,4 +169,4 @@ public class LoginServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-}
+
