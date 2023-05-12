@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iceCOOL.co - Home</title>      
         <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/styles/homestyles.css">
+        <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/sources/icons/icfav.png">
     </head>
     
     <body>        
