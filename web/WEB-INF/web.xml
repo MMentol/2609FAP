@@ -51,7 +51,7 @@
     </context-param>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
     
-    <!--> Servlet init <-->
+    <!--> Servlet Declarations <-->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>controller.LoginServlet</servlet-class>
@@ -67,6 +67,10 @@
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomCaptcha</servlet-name>
+        <servlet-class>model.CustomSimpleCaptcha</servlet-class>
     </servlet>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
     
@@ -86,6 +90,10 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomCaptcha</servlet-name>
+        <url-pattern>/CustomCaptcha</url-pattern>
     </servlet-mapping>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
 
