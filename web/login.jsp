@@ -46,7 +46,7 @@
                         <img id="captcha" src="./CustomCaptcha"><br>
                         <div class="field">
                             <h2>Captcha:</h2>
-                            <input type="text" class="text-entry" id="captchaAnswer" name="captchaAnswer" maxlength="20" required>
+                            <input type="text" class="text-entry" id="captchaAnswer" name="captchaAnswer" maxlength="5" required>
                         </div>
                         <input type="submit" class="special-button" value="Log In">                                        
                     </form>      
