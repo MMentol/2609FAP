@@ -39,7 +39,7 @@
                 <hr class="line-break">
                 <div id="site-information-a"></div>
                 <div class="site-information" id="site-information">
-                    <h2 class="header-text">About iceCOOL.co?</h2>
+                    <h2 class="header-text">What is iceCOOL.co?</h2>
                     <p class="body-text"><span class="emphasized">iceCOOL.co</span> (i-se-kool dot koh) is a small start-up resale company founded by a group of friends 
                         offering premium cooling and air-conditioning electronic products of the same quality as the manufacturers themselves but at a lower price!</p>
                     <br>
@@ -47,13 +47,13 @@
                         shipping, delivery, and in-house installation along with credit payment options to all our customers, available right from the comfort of their homes 
                         without the need to go to any physical store whatsoever.</p>
                     <br>
-                    <p class="body-text">Currently, we only have a limited stock of air-conditioning units to help beat the summer heat. However, we will be able to expand our 
-                        inventory and provide even more and even better products with your continued support and patronage!</p>
+                    <p class="body-text">Currently, we only have a limited stock of air-conditioning units to help beat the heat. However, we will be able to expand our 
+                        inventory and provide even more and even BETTER products with your continued support and patronage!</p>
                 </div>
                 <hr class="line-break">
                 <div id="product-offerings-a"></div>
                 <div class="product-offerings" id="product-offerings">
-                    <h2 class="header-text">Product Offerings</h2>                    
+                    <h2 class="header-text">What does iceCOOL.co have?</h2>                    
                     <div class="gallery-container">
                         <img id="product-sample" alt="an air conditioning unit." src="${pageContext.request.contextPath}/sources/img/samsung.webp">
                         <img id="product-sample" alt="another air conditioning unit." src="${pageContext.request.contextPath}/sources/img/panasonic1.png">
@@ -67,8 +67,8 @@
                 <hr class="line-break">
                 <div id="contact-info-a"></div>
                 <div class="contact-info" id="contact-info">
-                    <h2 class="header-text">Contact Us!</h2>
-                    <p class="body-text">You may reach out to us by calling <span class="emphasized"><%= pageContext.getServletContext().getInitParameter("generalPhone").toString() %></span> or by sending us an email 
+                    <h2 class="header-text">How do you reach iceCOOL.co?</h2>
+                    <p class="body-text">You can contact us by calling <span class="emphasized"><%= pageContext.getServletContext().getInitParameter("generalPhone").toString() %></span> or by sending us an email 
                         at <span class="emphasized"><%= pageContext.getServletContext().getInitParameter("generalMail").toString() %></span> for any general concerns or queries you have about <span class="emphasized">iceCOOL.co</span>.</p>
                     <br>
                     <p class="body-text">For any concerns with your <span class="emphasized">iceCOOL.co</span> products, please call our customer support hotline at <span class="emphasized"><%= pageContext.getServletContext().getInitParameter("supportPhone").toString() %></span> 

@@ -32,22 +32,26 @@
                 <p class="body-text">Just enter either your <span class="emphasized">username</span> or <span class="emphasized">email</span>
                     and <span class="emphasized">password</span> in the respective fields provided then accomplish the Captcha to proceed.</p>
             </div>
-            <div class="half-side right">
-                <div class="form-container">
-                    <form action="Login" method="post">                    
-                        <h2>USERNAME/EMAIL</h2>
-                        <input type="text" id="username" name="username" class="text-entry" maxlength="20" required>
-                        <div class="spacer"></div>
-                        <h2>PASSWORD</h2>
-                        <input type="password" id="password" name="password" class="text-entry" maxlength="20" required>
-                        <div class="spacer"></div>
+            <div class="half-side">
+                <div class="form-container">                    
+                    <form action="Login" method="post">                           
+                        <div class="field">
+                            <h2>Username or Email</h2>
+                            <input type="text" id="username" name="username" class="text-entry" maxlength="20" required>
+                        </div>
+                        <div class="field">
+                            <h2>Password</h2>
+                            <input type="password" id="password" name="password" class="text-entry" maxlength="20" required>
+                        </div>
                         <img id="captcha" src="./CustomCaptcha"><br>
-                        <h2>Validate Captcha:</h2>
-                        <input type="text" name="captchaAnswer" maxlength="20" required>
+                        <div class="field">
+                            <h2>Captcha:</h2>
+                            <input type="text" class="text-entry" id="captchaAnswer" name="captchaAnswer" maxlength="20" required>
+                        </div>
                         <input type="submit" class="special-button" value="Log In">                                        
-                    </form>          
-                    <h3 class="error-text"></h3>
+                    </form>      
                 </div>
+                <h3 class="error-text"></h3>
             </div>                 
         </main>
         
