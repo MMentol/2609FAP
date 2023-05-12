@@ -20,56 +20,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginServlet extends HttpServlet {
- private static byte[] key;
-    private static String cip;
-    Connection dbConnection;
-    int totalAttempts;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-  
+    Connection dbConnection;
+    String publicKey;
+    int loginAttempts; 
     
-    //Establishing Connection
     public void init(ServletConfig config) throws ServletException {
-        key = config.getInitParameter("key").getBytes();
-        cip = config.getInitParameter("cipher");
         super.init(config);
-        totalAttempts = 0;
+        publicKey = config.getInitParameter("pubKey");
         
         try {
             Class.forName(config.getInitParameter("dbClass"));
-            StringBuffer dbURL = new StringBuffer(config.getInitParameter("dbDriver")) 
-                    .append("://")
-                    .append(config.getInitParameter("dbHost"))
-                    .append(":")
-                    .append(config.getInitParameter("dbPort"))
-                    .append("/")
-                    .append(config.getInitParameter("dbName"));
-            System.out.println("DbUrl: " + dbURL);
-            dbConnection = DriverManager.getConnection(dbURL.toString(), config.getInitParameter("dbUName"), config.getInitParameter("dbPass"));
+            
+            String dbURL = config.getInitParameter("dbDriver") +
+                    "://" + config.getInitParameter("dbHost") +
+                    ":" + config.getInitParameter("dbPort") +
+                    "/" + config.getInitParameter("dbName");
+            System.out.println("[Debug] Established connection to database: " + dbURL);
+                                   
+            dbConnection = DriverManager.getConnection(dbURL, config.getInitParameter("dbUName"), config.getInitParameter("dbPass"));
         }
         catch (ClassNotFoundException | SQLException ex) {
             System.out.println("A connection to the database could not be established.");
-        }
+        }     
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String enteredUN = (String) request.getParameter("username");
+        String enteredPW = (String) request.getParameter("password");      
+        String answer = (String) request.getParameter("captchaAnswer");
         
-        String uname = request.getParameter("uname");
-        String pass = request.getParameter("pass");
-        HttpSession cUser = request.getSession();
+        HttpSession cUser = request.getSession();        
+        Captcha verify = (Captcha) cUser.getAttribute(Captcha.NAME);
         
-        Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
-        String answer = request.getParameter("captcha");
-        if (!captcha.isCorrect(answer)) {
+        /*
+            To add:
+                Turn public key retrieved from servlet context into a byte array.
+                Obtain encryption mode (AES).
+        
+                Method to check login attempts before sending user back to landing.
+        
+            Logic:
+                Use a prepared statement to select the user with the given email OR username from users table.
+                * Username/Email is ENCRYPTED so it must be decrypted first before comparing.
+        
+                Check if captcha is correct before checking for matches.
+                If captcha is correct and a match is found, decrypt the password and compare it to the password entered by the user.
+                
+                If any of these checks fail, inform user what they got wrong (username/email, password, or captcha) then 
+                reduce user's login attempts before having them try again.
+        
+                Login attempts should ideally not be handled with a session but brain smol and that's what I did lmfao
+                basically if login attempts will be reduced, just include the number of attempts left as an attribute then add logic to see if it's 0 alr                      
+        
+                Note: "What if there are users with the same username in the system since it's not a primary key and we're using it
+                to find users in the DB???"
+                - Register servlet will prevent users from having the same usernames/emails.
+                    Statement will always return exactly one user if the entered credentials are correct.
+        */
+      if (!captcha.isCorrect(answer)) {
             
             response.sendRedirect("login.jsp");
             request.getSession().setAttribute("failCaptcha", "Captcha verification failed, please try again!");
@@ -118,7 +128,7 @@ public class LoginServlet extends HttpServlet {
                 cUser.setAttribute("unconnectMsg", "Unable to connect to database.");
                 response.sendRedirect("login.jsp");
             }
-        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -159,4 +169,4 @@ public class LoginServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-}
+
