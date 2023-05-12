@@ -1,5 +1,13 @@
 @import "main.css";
 
+header {
+    position: fixed;
+}
+
+main {
+    margin-top: 8%;
+}
+
 #site-information-a, #product-offerings-a, #contact-info-a {
     position: relative;
     top: -100px;
@@ -35,12 +43,14 @@
 
 #logo-text {
     height: 20vh;
-    width: 40vw;
+    width: 30vw;
     object-fit: none;
+    margin: 0 0;
+    padding: 0 0;
 }
 
 .logo-holder #site-logo {
-    height: 40vh;
+    height: 35vh;
     margin: 0 0;
     padding: 0 0;
 }
@@ -138,6 +148,6 @@
   object-fit: fill;
   background: #FFFFFF;
   border: solid 3.5px var(--highlights);
+  border-radius: 10px;
 }
-
 /* --------------- END ---------------*/

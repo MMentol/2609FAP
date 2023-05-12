@@ -53,8 +53,7 @@
                 <hr class="line-break">
                 <div id="product-offerings-a"></div>
                 <div class="product-offerings" id="product-offerings">
-                    <h2 class="header-text">Product Offerings</h2>
-                    <p class="body-text showcase">Here are some of the available products we currently have on stock!</p>
+                    <h2 class="header-text">Product Offerings</h2>                    
                     <div class="gallery-container">
                         <img id="product-sample" alt="an air conditioning unit." src="${pageContext.request.contextPath}/sources/img/samsung.webp">
                         <img id="product-sample" alt="another air conditioning unit." src="${pageContext.request.contextPath}/sources/img/panasonic1.png">
@@ -62,7 +61,8 @@
                         <img id="product-sample" alt="it's... another air conditioning unit." src="${pageContext.request.contextPath}/sources/img/fuji.jpg">
                         <img id="product-sample" alt="WAIT... it's another air conditioning unit." src="${pageContext.request.contextPath}/sources/img/carrier.webp">
                         <img id="product-sample" alt="NO WAY... it's ANOTHER air conditioning unit..." src="${pageContext.request.contextPath}/sources/img/panasonic2.jpg">
-                    </div>                    
+                    </div>            
+                    <p class="body-text showcase">Here are some of the available products we currently have on stock!</p>
                 </div>
                 <hr class="line-break">
                 <div id="contact-info-a"></div>
