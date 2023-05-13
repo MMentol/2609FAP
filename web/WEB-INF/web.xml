@@ -22,6 +22,10 @@
         <param-name>pubKey</param-name>
         <param-value>FAP_2609</param-value>
     </context-param>
+    <context-param>
+            <param-name>cipher</param-name>
+            <param-value>AES/ECB/PKCS5PADDING</param-value>
+    </context-param>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
     
     <!--> Database-related context parameters. <-->

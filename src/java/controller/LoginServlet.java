@@ -20,13 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginServlet extends HttpServlet {
+
+    private static byte[] publicKey;
+    private static String cip;
     Connection dbConnection;
-    String publicKey;
-    int loginAttempts; 
     
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        publicKey = config.getInitParameter("pubKey");
+        publicKey = config.getInitParameter("pubkey").getBytes();
+        cip = config.getInitParameter("cipher");
         
         try {
             Class.forName(config.getInitParameter("dbClass"));
@@ -78,6 +80,38 @@ public class LoginServlet extends HttpServlet {
                 - Register servlet will prevent users from having the same usernames/emails.
                     Statement will always return exactly one user if the entered credentials are correct.
         */
+      if (!verify.isCorrect(answer)) {
+            
+            response.sendRedirect("login.jsp");
+            request.getSession().setAttribute("failCaptcha", "Captcha verification failed, please try again!");
+            return;
+        }
+        
+        try {
+            // Create and Execute the query
+            PreparedStatement ps= dbConnection.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=? AND USER_PASS=?");
+            ps.setString(1,Crypto.encrypt(enteredUN, publicKey, cip));
+            ps.setString(2,Crypto.encrypt(enteredPW, publicKey, cip));
+            ResultSet rs = ps.executeQuery();
+            
+            HttpSession session = request.getSession();
+            while(rs.next())
+            {
+                    //if login attempt is valid
+                    session.setAttribute("EMAIL", Crypto.decrypt(rs.getString("USER_EMAIL"), publicKey, cip) );
+                    session.setAttribute("PASSWORD", Crypto.decrypt(rs.getString("USER_PASS"), publicKey, cip) );
+                    session.setAttribute("USERNAME", Crypto.decrypt(rs.getString("USER_NAME"), publicKey, cip) );
+                    response.sendRedirect("shop.jsp");
+                    return;
+                
+            }
+            cUser.setAttribute("incorrectMsg", "Your username or password is incorrect.");
+            response.sendRedirect("login.jsp"); 
+            }
+            catch (SQLException e) {
+                cUser.setAttribute("unconnectMsg", "Unable to connect to database.");
+                response.sendRedirect("login.jsp");
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
