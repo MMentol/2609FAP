@@ -38,12 +38,18 @@
             <hr class="line-break">
             <div class="half-side">
                 <form action="UserLogin.do" method="post">                    
+                    <h2>EMAIL</h2>
+                    <input type="text" id="email" name="email" class="text-entry" maxlength="20" required>
+                    <div></div>
                     <h2>USERNAME</h2>
                     <input type="text" id="username" name="username" class="text-entry" maxlength="20" required>
                     <div class="spacer"></div>
                     <h2>PASSWORD</h2>
                     <input type="password" id="password" name="password" class="text-entry" maxlength="20" required>
                     <div class="spacer"></div>
+                    <h2>ADDRESS</h2>
+                    <input type="text" id="address" name="address" class="text-entry" maxlength="20" required>
+                    <div></div>
                     <img src="SimpleCaptcha" alt="Captcha"/><br>
                     <h1>Enter Captcha:</h1>
                     <input type="text" name="captcha-input" required>
