@@ -21,13 +21,14 @@ import java.util.List;
 
 public class LoginServlet extends HttpServlet {
 
+    private static byte[] publicKey;
+    private static String cip;
     Connection dbConnection;
-    String publicKey;
-    int loginAttempts; 
     
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        publicKey = config.getInitParameter("pubKey");
+        publicKey = config.getInitParameter("pubkey").getBytes();
+        cip = config.getInitParameter("cipher");
         
         try {
             Class.forName(config.getInitParameter("dbClass"));
@@ -79,50 +80,33 @@ public class LoginServlet extends HttpServlet {
                 - Register servlet will prevent users from having the same usernames/emails.
                     Statement will always return exactly one user if the entered credentials are correct.
         */
-      if (!captcha.isCorrect(answer)) {
+      if (!verify.isCorrect(answer)) {
             
             response.sendRedirect("login.jsp");
             request.getSession().setAttribute("failCaptcha", "Captcha verification failed, please try again!");
             return;
         }
-        if (totalAttempts >= 3 || (cUser.getAttribute("attempts") == null)) {
-            totalAttempts = 0;
-        }
+        
         try {
             // Create and Execute the query
-            Statement state = dbConnection.createStatement();
-            String dbQuery = "SELECT * FROM USERS ORDER BY EMAIL";
-            ResultSet rs = state.executeQuery(dbQuery);
+            PreparedStatement ps= dbConnection.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=? AND USER_PASS=?");
+            ps.setString(1,Crypto.encrypt(enteredUN, publicKey, cip));
+            ps.setString(2,Crypto.encrypt(enteredPW, publicKey, cip));
+            ResultSet rs = ps.executeQuery();
             
             HttpSession session = request.getSession();
             while(rs.next())
             {
-                if (uname.equals(rs.getString("EMAIL")) && pass.equals(Crypto.decrypt(rs.getString("PASSWORD"), key, cip)))
-                {
                     //if login attempt is valid
-                    session.setAttribute("EMAIL", rs.getString("EMAIL") );
-                    session.setAttribute("PASSWORD", rs.getString("PASSWORD") );
-                    session.setAttribute("ROLE", rs.getString("USERROLE") );
-                    totalAttempts = 0;
-                    if (rs.getString("USERROLE").equals("admin")){
-                        response.sendRedirect("adminpage.jsp");
-                        rs.close(); 
-                        
-                    } else if(rs.getString("USERROLE").equals("guest")){
-                        response.sendRedirect("userpage.jsp");
-                        rs.close(); 
-                        
-                    }
+                    session.setAttribute("EMAIL", Crypto.decrypt(rs.getString("USER_EMAIL"), publicKey, cip) );
+                    session.setAttribute("PASSWORD", Crypto.decrypt(rs.getString("USER_PASS"), publicKey, cip) );
+                    session.setAttribute("USERNAME", Crypto.decrypt(rs.getString("USER_NAME"), publicKey, cip) );
+                    response.sendRedirect("shop.jsp");
                     return;
-                }
                 
-                
-                    
             }
-            totalAttempts++;
-            cUser.setAttribute("attempts", totalAttempts);
-            cUser.setAttribute("incorrectMsg", "Your username or password is incorrect. You have " + (3 - totalAttempts) + " attempts remaining.");
-            response.sendRedirect("inputerror.jsp"); 
+            cUser.setAttribute("incorrectMsg", "Your username or password is incorrect.");
+            response.sendRedirect("login.jsp"); 
             }
             catch (SQLException e) {
                 cUser.setAttribute("unconnectMsg", "Unable to connect to database.");
@@ -169,4 +153,4 @@ public class LoginServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-
+}
