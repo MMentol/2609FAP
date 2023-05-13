@@ -1,11 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <!--> Web Application-related context parameters. <-->
+    <context-param>
+        <param-name>generalPhone</param-name>
+        <param-value>8123-4567</param-value>
+    </context-param>
+    <context-param>
+        <param-name>generalMail</param-name>
+        <param-value>totallyREALemail@iceCOOL.co</param-value>
+    </context-param>
+    <context-param>
+        <param-name>supportPhone</param-name>
+        <param-value>8765-4321</param-value>
+    </context-param>
+    <context-param>
+        <param-name>supportMail</param-name>
+        <param-value>totallyREALsupport@iceCOOL.co</param-value>
+    </context-param>
+    <context-param>
+        <param-name>pubKey</param-name>
+        <param-value>FAP_2609</param-value>
+    </context-param>
+    <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
+    
+    <!--> Database-related context parameters. <-->
+    <context-param>
+        <param-name>dbClass</param-name>
+        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+    </context-param>    
+    <context-param>
+        <param-name>dbUName</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPass</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbDriver</param-name>
+        <param-value>jdbc:derby</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbHost</param-name>
+        <param-value>localhost</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPort</param-name>
+        <param-value>1527</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbName</param-name>
+        <param-value>iceCoolDB</param-value>
+    </context-param>
+    <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
+    
+    <!--> Servlet Declarations <-->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>controller.CheckoutHandler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomCaptcha</servlet-name>
+        <servlet-class>model.CustomSimpleCaptcha</servlet-class>
+    </servlet>
+    <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
+    
+    <!--> Servlet Mapping <-->
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/Checkout</url-pattern>
+    </servlet-mapping>          
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomCaptcha</servlet-name>
+        <url-pattern>/CustomCaptcha</url-pattern>
+    </servlet-mapping>
+    <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
+
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>landing.jsp</welcome-file>
     </welcome-file-list>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error-404.jsp</location>
+    </error-page>
 </web-app>

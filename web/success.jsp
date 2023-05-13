@@ -1,9 +1,12 @@
+
 <%@page import="java.text.NumberFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>Order Successful!</title>      
         <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/succstyles.css">
     </head>
@@ -48,3 +51,4 @@
     </body>
     
 </html>
+
