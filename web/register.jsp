@@ -28,9 +28,10 @@
         <main>
             <div class="half-side">
                 <img id="site-logo" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_MAIN.png">
-                <p class="body-text">Are you prepared to beat the heat? Read closely and follow along and you'll be ready in no time!</p>                
-                <p class="body-text">To start, select a secure <span class="emphasized">email</span> and a super secret and super secure 
-                    <span class="emphasized">password</span> which will help us identify who you are whenever you log into our website.</p>
+                <p class="body-text">Are you prepared to beat the heat? Read closely and follow along then you'll be ready in no time!</p>                
+                <p class="body-text">To start, select a unique <span class="emphasized">email</span> and a super secret and super secure 
+                    <span class="emphasized">password</span> which will help us identify who you are whenever you log into our website.
+                    Make sure you NEVER tell anyone your password. Don't worry, we won't know it too.</p>
                 <p class="body-text">After that, choose a very cool and unique <span class="emphasized">username</span> which we will use to refer to you 
                     whenever you use our services. Aside from that, let us know your <span class="emphasized">address</span> so that we know where to send 
                     your wonderful <span class="emphasized">iceCOOL.co</span> products whenever you place an order!</p>
