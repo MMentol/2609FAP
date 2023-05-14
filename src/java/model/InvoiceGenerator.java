@@ -37,4 +37,8 @@ public class InvoiceGenerator extends PdfPageEventHelper {
     private Document report;
     private PdfWriter writer;
     private PdfTemplate totalPages;
+    
+    public void printInvoice(){
+        
+    }
 }

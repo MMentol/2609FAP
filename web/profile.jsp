@@ -11,9 +11,16 @@
         <header>
             <nav class="nav-bar">                
                 <a class="toLanding" href="landing.jsp"><img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png"></a>   
+                <% if (session.getAttribute("email") != null) { %>
+                <form action="Logout" method="post">                                        
+                    <input type="submit" class="header-button" value="HOME">                    
+                </form>
+                <% } 
+                else { %>
                 <ul class="nav-list">                                        
                     <li class="nav-item"><a href="landing.jsp">HOME</a></li>
                 </ul>
+                <%}%>
             </nav>
         </header>
                 

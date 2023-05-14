@@ -12,16 +12,23 @@
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Expires", "0");        
 
-            if (session.getAttribute("userID") != null) {
+            if (session.getAttribute("USERNAME") != null) {
                 response.sendRedirect("profile.jsp");
             }
         %--%>
         <header>
             <nav class="nav-bar">                
                 <a class="toLanding" href="landing.jsp"><img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png"></a>   
+                <% if (session.getAttribute("message") != null) { %>
+                <form action="Logout" method="post">                                        
+                    <input type="submit" class="header-button" value="HOME">                    
+                </form>
+                <% } 
+                else { %>
                 <ul class="nav-list">                                        
                     <li class="nav-item"><a href="landing.jsp">HOME</a></li>
                 </ul>
+                <%}%>
             </nav>
         </header>
                 
@@ -65,7 +72,13 @@
                         <input type="submit" class="special-button" value="Register">                                        
                     </form>      
                 </div>
-                <h3 class="error-text"></h3>
+                <%
+                if (session.getAttribute("message") != null) {
+                %>
+                    <h3 class="error-text">${message}</h3>
+                <%
+                }
+                %>
             </div>                 
         </main>
         
