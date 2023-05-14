@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-package Controller;
+package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,34 +17,31 @@ import nl.captcha.Captcha;
 import model.Crypto;
 import model.idGen;
 
-/**
- *
- * @author Joseph Robles
- */
 public class RegisterServlet extends HttpServlet {
-
     private static byte[] publicKey;
     private static String cip;
     Connection dbConnection;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        publicKey = config.getInitParameter("pubkey").getBytes();
-        cip = config.getInitParameter("cipher");
+        ServletContext context = getServletContext(); 
+        publicKey = context.getInitParameter("pubKey").getBytes();
+        cip = context.getInitParameter("cipher");
         
         try {
-            Class.forName(config.getInitParameter("dbClass"));
+            Class.forName(context.getInitParameter("dbClass"));
             
-            String dbURL = config.getInitParameter("dbDriver") +
-                    "://" + config.getInitParameter("dbHost") +
-                    ":" + config.getInitParameter("dbPort") +
-                    "/" + config.getInitParameter("dbName");
+            String dbURL = context.getInitParameter("dbDriver") +
+                    "://" + context.getInitParameter("dbHost") +
+                    ":" + context.getInitParameter("dbPort") +
+                    "/" + context.getInitParameter("dbName");
             System.out.println("[Debug] Established connection to database: " + dbURL);
                                    
-            dbConnection = DriverManager.getConnection(dbURL, config.getInitParameter("dbUName"), config.getInitParameter("dbPass"));
+            dbConnection = DriverManager.getConnection(dbURL, context.getInitParameter("dbUName"), context.getInitParameter("dbPass"));
         }
         catch (ClassNotFoundException | SQLException ex) {
             System.out.println("A connection to the database could not be established.");
+            // To change: specfiy an exception to throw and a corresponding error page.
         }   
     }
 
@@ -65,21 +57,18 @@ public class RegisterServlet extends HttpServlet {
         String enteredEm = request.getParameter("email");
         String enteredAd = request.getParameter("address");
         String userid = idG.generateUserId();
-        String answer = request.getParameter("captcha-input");
+        String answer = request.getParameter("captchaAnswer");
         
         //Resetting messages
-        cUser.setAttribute("unconnectMsg", null);
-        cUser.setAttribute("userExists", null);
+        cUser.setAttribute("message", null);
 
-        Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
+        Captcha captcha = (Captcha) cUser.getAttribute(Captcha.NAME);
         if (!captcha.isCorrect(answer)) {//Checks if Captcha is correct
-
-            request.getSession().setAttribute("failCaptcha", "Captcha verification failed, please try again!");
+            request.getSession().setAttribute("message", "Captcha verification failed, please try again!");
             response.sendRedirect("register.jsp");
             return;
         }
         try {
-            
             //Checks if user exists
             String dbQuery = "SELECT * FROM USERS WHERE USER_NAME = ? OR USER_EMAIL = ?";
             PreparedStatement pState = dbConnection.prepareStatement(dbQuery);
@@ -88,8 +77,8 @@ public class RegisterServlet extends HttpServlet {
             ResultSet rs = pState.executeQuery();
 
             if (rs.next()) {
-                cUser.setAttribute("userExists", "This user already exists!");
-                response.sendRedirect("adminpage.jsp");
+                cUser.setAttribute("message", "User with the specified email/username already exists.");
+                response.sendRedirect("register.jsp");
                 return;
             }
             rs.close();
@@ -103,14 +92,13 @@ public class RegisterServlet extends HttpServlet {
             pState.setString(4, Crypto.encrypt(enteredPW, publicKey, cip));
             pState.setString(5, Crypto.encrypt(enteredAd, publicKey, cip));
             pState.executeUpdate();
-            cUser.setAttribute("successMsg", "You have successfully registered!");
+            cUser.setAttribute("message", "You have successfully registered!");
             response.sendRedirect("login.jsp");
             
-           
         } catch (Exception ex) {
-            
-            cUser.setAttribute("unconnectMsg", "Unable to connect to database.");
-            response.sendRedirect("adminpage.jsp");
+            // To change: specfiy an exception to throw and a corresponding error page.
+            cUser.setAttribute("message", "Unable to connect to database.");
+            response.sendRedirect("register.jsp");
         } 
     }
 

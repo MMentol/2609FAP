@@ -1,7 +1,7 @@
 @import "main.css";
 
 #site-logo {
-    height: 25vh;
+    height: 15vh;
     margin: 0 auto;
 }
 
@@ -21,7 +21,8 @@
     border: solid 3.5px var(--highlights);
     align-items: center;
     width: 40%;
-    margin: 0 10%;
+    margin: 1rem 10%;
+    height: unset;
 }
 #captcha {
     margin: 3rem auto 0;
@@ -61,7 +62,7 @@ h2 {
     text-justify: inter-word;
     font-family: var(--body-text);
     color: var(--dark);
-    font-size: 20pt;
+    font-size: 16pt;
 }
 
 .special-button {

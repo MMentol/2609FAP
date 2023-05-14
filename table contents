@@ -10,4 +10,3 @@ INSERT INTO STOCK VALUES('1005','Carrier WCARJ012EEV 1.5 HP Window Type Air Cond
 ',32999,'carrier.webp');
 INSERT INTO STOCK VALUES('1006','Panasonic S-24PB3Q6 3HP Floor Standing Tower Air Conditioner
 ',108999,'panasonic2.jpg');
-
