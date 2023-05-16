@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>Bountiful Basket - Shop</title>      
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/shopstyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/styles/regstyles.css">
     </head>
     
     <body>
@@ -22,25 +22,11 @@
             }
         %>
         <header>
-            <nav class="nav-bar">
-               
-                    <img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogowhite.png">
-              
-                          
-                <div class="profile-holder">
-                    <img id="user-logo" src="${pageContext.request.contextPath}/sources/user.png">
-                    <h1>
-                      
-                        ${userID}
-                        
-                       
-                    </h1>
-                    
-                    <form action="UserLogout.do" method="post">                                        
-                        <input type="submit" class="header-button" value="Log Out">                    
-                    </form>
-                    
-                </div>
+           <nav class="nav-bar">                
+                <img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png">  
+                <form action="Logout" method="post">                                        
+                    <input type="submit" class="logout-button" value="LOG OUT">
+                </form>     
             </nav>
         </header>
             
@@ -77,8 +63,8 @@
         </main>
                 
         <footer>
-            <div class="footer-text"><p>This website was created in fulfillment of the course requirements for ICS2608.</p></div>
-            <div class="footer-text"><p>Made By: Articulo, De Leon, T., Macuja, Robles, J. - 2CSB</p></div>      
+           <div class="footer-text"><p>Final Academic Project (FAP) for ICS2609.</p></div>
+            <div class="footer-text"><p>Made By: Articulo, De Leon, T., Robles, J. - 2CSB</p></div>      
         </footer>
                 
     </body> 
