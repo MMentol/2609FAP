@@ -1,10 +1,15 @@
 package model;
 
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.servlet.ServletContext;
 
 
 public class ShopInitializer {
+    
+    
     public ArrayList<ShopItem> initStock(ResultSet rs){
         ArrayList<ShopItem> stonk = new ArrayList();
         
