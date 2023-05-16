@@ -77,7 +77,7 @@ h2 {
     font-weight: bold;
     transition: all .15s ease-in-out;
     display: block;
-    margin: 1rem auto;
+    margin: 0.5rem auto;
 }
 
 .special-button:hover {
@@ -111,4 +111,21 @@ h2 {
     text-align: center;
     font-family: var(--body-text);
     color: var(--error);
+}
+
+.header-button {
+    border-style: none;
+    background-color: rgba(0,0,0,0);
+    font-weight: bolder;
+    font-size: 32px;    
+    height: 100%;
+    padding: 0 3rem;
+    display: block;
+    color: #FFFFFF;
+    font-family: var(--headings2);
+}
+
+.header-button:hover {
+    background-color: var(--secondary);
+    cursor: pointer;
 }

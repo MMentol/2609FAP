@@ -1,14 +1,13 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,31 +15,32 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import nl.captcha.Captcha;
 import model.Crypto;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginServlet extends HttpServlet {
+    private static byte[] publicKey;
+    private static String cip;
     Connection dbConnection;
-    String publicKey;
-    int loginAttempts; 
     
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        publicKey = config.getInitParameter("pubKey");
+        ServletContext context = getServletContext();
+        publicKey = context.getInitParameter("pubKey").getBytes();
+        cip = context.getInitParameter("cipher");
         
         try {
-            Class.forName(config.getInitParameter("dbClass"));
+            Class.forName(context.getInitParameter("dbClass"));
             
-            String dbURL = config.getInitParameter("dbDriver") +
-                    "://" + config.getInitParameter("dbHost") +
-                    ":" + config.getInitParameter("dbPort") +
-                    "/" + config.getInitParameter("dbName");
+            String dbURL = context.getInitParameter("dbDriver") +
+                    "://" + context.getInitParameter("dbHost") +
+                    ":" + context.getInitParameter("dbPort") +
+                    "/" + context.getInitParameter("dbName");
             System.out.println("[Debug] Established connection to database: " + dbURL);
                                    
-            dbConnection = DriverManager.getConnection(dbURL, config.getInitParameter("dbUName"), config.getInitParameter("dbPass"));
+            dbConnection = DriverManager.getConnection(dbURL, context.getInitParameter("dbUName"), context.getInitParameter("dbPass"));
         }
         catch (ClassNotFoundException | SQLException ex) {
             System.out.println("A connection to the database could not be established.");
+            // To change: specfiy an exception to throw and a corresponding error page.
         }     
     }
     
@@ -78,6 +78,36 @@ public class LoginServlet extends HttpServlet {
                 - Register servlet will prevent users from having the same usernames/emails.
                     Statement will always return exactly one user if the entered credentials are correct.
         */
+        
+        if (!verify.isCorrect(answer)) {
+            response.sendRedirect("login.jsp");
+            request.getSession().setAttribute("message", "Captcha verification failed, please try again!");
+            return;
+        }
+
+        try {
+            // Create and Execute the query
+            PreparedStatement ps = dbConnection.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=? AND USER_PASS=?");
+            ps.setString(1, Crypto.encrypt(enteredUN, publicKey, cip));
+            ps.setString(2, Crypto.encrypt(enteredPW, publicKey, cip));
+            ResultSet rs = ps.executeQuery();
+
+            HttpSession session = request.getSession();
+            while (rs.next()) {
+                //if login attempt is valid
+                session.setAttribute("EMAIL", Crypto.decrypt(rs.getString("USER_EMAIL"), publicKey, cip));
+                session.setAttribute("PASSWORD", Crypto.decrypt(rs.getString("USER_PASS"), publicKey, cip));
+                session.setAttribute("USERNAME", Crypto.decrypt(rs.getString("USER_NAME"), publicKey, cip));
+                session.removeAttribute("message");
+                response.sendRedirect("profile.jsp");
+                return;
+            }
+            cUser.setAttribute("message", "Your username or password is incorrect.");
+            response.sendRedirect("login.jsp");
+        } catch (SQLException e) {
+            cUser.setAttribute("message", "Unable to connect to database.");
+            response.sendRedirect("login.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
