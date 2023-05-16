@@ -14,7 +14,11 @@
     <body>
         <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            response.setHeader("Expires", "0");            
+            response.setHeader("Expires", "0");        
+
+            if (session.getAttribute("EMAIL") == null) {
+                response.sendRedirect("landing.jsp");
+            }
         %>
         <header>
             <nav class="nav-bar">
