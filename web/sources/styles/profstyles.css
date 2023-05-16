@@ -23,7 +23,7 @@ main {
 
 .order-holder {
     background: var(--secondary);
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -119,5 +119,82 @@ main a {
 
 .shop-button:hover {
     box-shadow: 0px 0px 8px var(--tertiary);
+    cursor: pointer;
+}
+
+.user-orders {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#order-items {
+    table-layout: fixed;
+    width: 95%;
+    margin: 2em 0;
+}
+
+#order-items th {
+    width: 20%;
+    font-family: var(--headings2);
+    color: var(--primary);
+    text-shadow: .5px .5px 5px var(--secondary);
+    font-size: 20pt;
+    padding: 0.5em 0;
+    text-align: center;
+}
+
+#order-items td {
+    width: auto;
+    height: 30%;
+    text-align: center;
+    margin: 0 2em; 
+}
+
+#small-thumb {
+    width: 150px;
+    height: 150px;
+    min-height: 100%;
+    display: block;
+    max-width: 100%;
+    object-fit: fill;
+    background: #FFFFFF;
+    border: solid 3.5px var(--highlights);
+    margin: 0 2em; 
+}
+
+#table-text {
+    display: inline-block;
+    font-family: var(--body-text);
+    font-size: 16pt;
+    line-height: 0.8;
+    width: 80%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.table-button {
+    width: 80%;
+    height: 45px;
+    margin: .35em 0;
+    font-family: var(--headings2);
+    font-size: 16pt;
+    background-color: var(--tertiary);
+    color: #FFFFFF;
+    border-radius: 25px;
+}
+
+.table-button.report {
+    border: solid 3.5px var(--highlights);
+}
+
+.table-button.remove {
+    border: solid 3.5px var(--error);
+}
+
+.table-button.report:hover, .table-button.remove:hover {
+    background-color: var(--secondary);
+    box-shadow: 0px 0px 8px var(--primary);
     cursor: pointer;
 }

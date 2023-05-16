@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -44,11 +45,56 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>                                    
                         
             <div class="order-holder">
                 <h1>Your Orders</h1>
                 <hr>
+                <div class="user-orders">
+                    <table id="order-items">
+                        <tr>
+                            <th></th>
+                            <th>Order Code</th>
+                            <th>Item Code</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                        <%
+                            
+                            ResultSet orders = (ResultSet) session.getAttribute("ORDERS");
+                            
+                            while(orders.next()) {
+                        %>
+                        <tr>
+                            <td><img id="small-thumb" src="${pageContext.request.contextPath}/sources/img/<%=orders.getString("STOCK_IMG")%>"></td>
+                            <td><p id="table-text"><%=orders.getString("ORDER_ID")%></p></td>
+                            <td><p id="table-text"><%=orders.getString("STOCK_ID")%></p></td>
+                            <td><p id="table-text"><%=orders.getString("STOCK_NAME")%></p></td>
+                            <td><p id="table-text">₱<%=orders.getString("STOCK_PRICE")%></p></td>
+                            <td>
+                                <div id="button-holder">
+                                    <%-- to do: add action to servlet handling reports --%>
+                                    <form action="" method="post">     
+                                        <button class="table-button report" type="submit" value="<%=orders.getString("ORDER_ID")%>">Get Invoice</button>
+                                    </form>
+                                    <%-- to do: add action to servlet handling order removal --%>
+                                    <form action="" method="post">   
+                                        <button class="table-button remove" type="submit" value="<%=orders.getString("ORDER_ID")%>">Cancel Order</button>                              
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <%
+                            }
+                            if (orders.isAfterLast()) {
+                                orders.beforeFirst();
+                            }
+                        %>
+                    </table>
+                </div>
+                
+                
             </div>
            
            <a href="shop.jsp"><button class="shop-button">Go to Shop</button></a>

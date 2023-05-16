@@ -91,11 +91,19 @@ public class RegisterServlet extends HttpServlet {
             pState.setString(3, Crypto.encrypt(enteredEm, publicKey, cip));
             pState.setString(4, Crypto.encrypt(enteredPW, publicKey, cip));
             pState.setString(5, Crypto.encrypt(enteredAd, publicKey, cip));
-            pState.executeUpdate();
+            pState.executeUpdate();            
+            
             cUser.setAttribute("EMAIL", enteredEm);
             cUser.setAttribute("USERNAME", enteredUN);
             cUser.setAttribute("ADDRESS", enteredAd);
             cUser.setAttribute("USER_ID", userid);
+                        
+            dbQuery = "SELECT STOCK.STOCK_IMG, ORDERS.ORDER_ID, STOCK.STOCK_ID, STOCK.STOCK_NAME, STOCK.STOCK_PRICE FROM ORDERS LEFT JOIN STOCK ON ORDERS.STOCK_ID=STOCK.STOCK_ID WHERE ORDERS.USER_ID=?";
+            pState = dbConnection.prepareStatement(dbQuery, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            pState.setString(1, userid);
+            rs = pState.executeQuery();
+            cUser.setAttribute("ORDERS", rs);
+            
             cUser.removeAttribute("message");
             response.sendRedirect("profile.jsp");
             

@@ -87,21 +87,29 @@ public class LoginServlet extends HttpServlet {
 
         try {
             // Create and Execute the query
-            PreparedStatement ps = dbConnection.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=? AND USER_PASS=?");
+            String dbQuery = "SELECT * FROM USERS WHERE (USER_NAME=? OR USER_EMAIL=?) AND USER_PASS=?";
+            PreparedStatement ps = dbConnection.prepareStatement(dbQuery);
             ps.setString(1, Crypto.encrypt(enteredUN, publicKey, cip));
-            ps.setString(2, Crypto.encrypt(enteredPW, publicKey, cip));
+            ps.setString(2, Crypto.encrypt(enteredUN, publicKey, cip));
+            ps.setString(3, Crypto.encrypt(enteredPW, publicKey, cip));
             ResultSet rs = ps.executeQuery();
 
             HttpSession session = request.getSession();
             while (rs.next()) {
                 //if login attempt is valid
                 
-                // put code here that queries stock table for orders w/ user's corresponding user_id
                 session.setAttribute("EMAIL", Crypto.decrypt(rs.getString("USER_EMAIL"), publicKey, cip));
                 session.setAttribute("USERNAME", Crypto.decrypt(rs.getString("USER_NAME"), publicKey, cip));
                 session.setAttribute("ADDRESS", Crypto.decrypt(rs.getString("USER_ADDRESS"), publicKey, cip));
-                session.setAttribute("ID", rs.getString("USER_ID"));
-                // add resultset containing orders user made as attribute
+                String uid = rs.getString("USER_ID");
+                session.setAttribute("ID", uid);
+                
+                dbQuery = "SELECT STOCK.STOCK_IMG, ORDERS.ORDER_ID, STOCK.STOCK_ID, STOCK.STOCK_NAME, STOCK.STOCK_PRICE FROM ORDERS LEFT JOIN STOCK ON ORDERS.STOCK_ID=STOCK.STOCK_ID WHERE ORDERS.USER_ID=?";
+                ps = dbConnection.prepareStatement(dbQuery, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ps.setString(1, uid);
+                rs = ps.executeQuery();
+                session.setAttribute("ORDERS", rs);
+                
                 session.removeAttribute("message");
                 response.sendRedirect("profile.jsp");
                 return;
