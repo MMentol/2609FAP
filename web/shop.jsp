@@ -1,4 +1,6 @@
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.*" %>
@@ -35,26 +37,33 @@
                 <div class="left-side">
                     <h1>Our Products</h1>
                     <hr class="line-break">
-                    <div class="stock-holder">                                                
+                   <div class="stock-holder">                                                
                         
                         <%      
+                           
+                          HashMap<String,ShopItem> stockList= (HashMap)session.getAttribute("STOCK");
+                           
                             
-                            ArrayList<ShopItem> stockList = new ShopInitializer().initStock((ResultSet)session.getAttribute("STOCKS"));
-                            
-                            for (int i = 0; i < stockList.size(); i++) {
-                                ShopItem currentItem = stockList.get(i);
+                        //    for (int i = 0; i < stockList.size(); i++) {
+                          //      ShopItem currentItem = stockList.get(i);
+                                
+                            for (Map.Entry<String,ShopItem> i : stockList.entrySet()) {
+                           
+                                 ShopItem currentItem = i.getValue();
+                                 
                         %>
                         <div class="shop-item">
                             <img class="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>">
                             <h3><%out.print(currentItem.getName());%></h3>
                             <p>₱<%out.print(currentItem.getPrice());%></p>
                            
-                            <form action="CartProcess.do" method="post">         
-                                <button class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>">Image</button>             
+                            <form method="post">         
+                                <button class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>"><img class="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>"></button>             
                             </form>
                             
                         </div>
-                        <%  } %>
+                                <%  
+                            } %>
                         
                     </div>                       
                 </div>

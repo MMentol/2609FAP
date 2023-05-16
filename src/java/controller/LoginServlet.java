@@ -106,11 +106,13 @@ public class LoginServlet extends HttpServlet {
                 String uid = rs.getString("USER_ID");
                 session.setAttribute("ID", uid);
                 
+                
                 dbQuery = "SELECT STOCK.STOCK_IMG, ORDERS.ORDER_ID, STOCK.STOCK_ID, STOCK.STOCK_NAME, STOCK.STOCK_PRICE FROM ORDERS LEFT JOIN STOCK ON ORDERS.STOCK_ID=STOCK.STOCK_ID WHERE ORDERS.USER_ID=?";
                 ps = dbConnection.prepareStatement(dbQuery, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ps.setString(1, uid);
                 rs = ps.executeQuery();
                 session.setAttribute("ORDERS", rs);
+                
                 
                 dbQuery = "SELECT * FROM STOCK";
                 ps = dbConnection.prepareStatement(dbQuery);
@@ -118,6 +120,7 @@ public class LoginServlet extends HttpServlet {
                 ShopInitializer si = new ShopInitializer();
                 HashMap stock = si.initStock(rs);
                 session.setAttribute("STOCK", stock);
+                
                 
                 session.removeAttribute("message");
                 response.sendRedirect("profile.jsp");
