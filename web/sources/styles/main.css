@@ -133,3 +133,20 @@ li.nav-item a {
     color: #FFFFFF;
     display: block; 
 }
+
+.header-button {
+    border-style: none;
+    background-color: rgba(0,0,0,0);
+    font-weight: bolder;
+    font-size: 32px;    
+    height: 100%;
+    padding: 0 3rem;
+    display: block;
+    color: #FFFFFF;
+    font-family: var(--headings2);
+}
+
+.header-button:hover {
+    background-color: var(--secondary);
+    cursor: pointer;
+}

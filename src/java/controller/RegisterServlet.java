@@ -64,20 +64,20 @@ public class RegisterServlet extends HttpServlet {
 
         Captcha captcha = (Captcha) cUser.getAttribute(Captcha.NAME);
         if (!captcha.isCorrect(answer)) {//Checks if Captcha is correct
-            request.getSession().setAttribute("message", "Captcha verification failed, please try again!");
+            request.getSession().setAttribute("message", "Captcha verification failed. Please try again.");
             response.sendRedirect("register.jsp");
             return;
         }
         try {
             //Checks if user exists
             String dbQuery = "SELECT * FROM USERS WHERE USER_NAME = ? OR USER_EMAIL = ?";
-            PreparedStatement pState = dbConnection.prepareStatement(dbQuery);
-            pState.setString(1, enteredUN);
-            pState.setString(2, enteredEm);
+            PreparedStatement pState = dbConnection.prepareStatement(dbQuery);            
+            pState.setString(1, Crypto.encrypt(enteredUN, publicKey, cip));
+            pState.setString(2, Crypto.encrypt(enteredEm, publicKey, cip));
             ResultSet rs = pState.executeQuery();
 
             if (rs.next()) {
-                cUser.setAttribute("message", "User with the specified email/username already exists.");
+                cUser.setAttribute("message", "The specified Email/Username is already in use.");
                 response.sendRedirect("register.jsp");
                 return;
             }
@@ -92,8 +92,12 @@ public class RegisterServlet extends HttpServlet {
             pState.setString(4, Crypto.encrypt(enteredPW, publicKey, cip));
             pState.setString(5, Crypto.encrypt(enteredAd, publicKey, cip));
             pState.executeUpdate();
-            cUser.setAttribute("message", "You have successfully registered!");
-            response.sendRedirect("login.jsp");
+            cUser.setAttribute("EMAIL", enteredEm);
+            cUser.setAttribute("USERNAME", enteredUN);
+            cUser.setAttribute("ADDRESS", enteredAd);
+            cUser.setAttribute("USER_ID", userid);
+            cUser.removeAttribute("message");
+            response.sendRedirect("profile.jsp");
             
         } catch (Exception ex) {
             // To change: specfiy an exception to throw and a corresponding error page.

@@ -96,13 +96,13 @@ public class LoginServlet extends HttpServlet {
             while (rs.next()) {
                 //if login attempt is valid
                 session.setAttribute("EMAIL", Crypto.decrypt(rs.getString("USER_EMAIL"), publicKey, cip));
-                session.setAttribute("PASSWORD", Crypto.decrypt(rs.getString("USER_PASS"), publicKey, cip));
                 session.setAttribute("USERNAME", Crypto.decrypt(rs.getString("USER_NAME"), publicKey, cip));
+                session.setAttribute("ADDRESS", Crypto.decrypt(rs.getString("USER_ADDRESS"), publicKey, cip));
                 session.removeAttribute("message");
                 response.sendRedirect("profile.jsp");
                 return;
             }
-            cUser.setAttribute("message", "Your username or password is incorrect.");
+            cUser.setAttribute("message", "Email/Username or Password is incorrect.\nPlease try again.");
             response.sendRedirect("login.jsp");
         } catch (SQLException e) {
             cUser.setAttribute("message", "Unable to connect to database.");
