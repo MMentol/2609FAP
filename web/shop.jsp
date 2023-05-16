@@ -77,31 +77,7 @@
                     </div>                       
                 </div>
                 <% if (session.getAttribute("userID") != null) { %>
-                <div class="right-side">
-                    <h1>Your Basket</h1>
-                    <hr class="line-break">
-                    <div class="cart-items">
-                        <form action="CartProcess.do" method="post"> 
-                        <%                        
-//                            for (ShopItem cartItem : currentCart) {
-                        %>
-                            <div class="cart-item">
-                                <!--<img class="smallthumb" src="${pageContext.request.contextPath}/sources/img/<%=cartItem.getPic()%>">-->                                
-                                <div class="cart-info">
-                                    <!--<h3><%out.print(cartItem.getName());%></h3>-->
-                                    <!--<p>₱<%out.print(cartItem.getPrice());%></p>-->                                                                                                 
-                                    <input name="<%=cartItem.getID()%>" type="number" value="<%=cartItem.getQuantity()%>" min="1" max="99">
-                                </div>
-                                    <!--<button class="removeCartButton" type="submit" name="removedItem" value="<%=cartItem.getID()%>">Remove</button>-->             
-                            </div>
-                        <%
-                            }                            
-                        %>                        
-                    </div>
-                    <%-- TO DO: add action to checkout servlet. --%>                    
-                        <input class="special-button" name="checkout" type="submit" value="Check Out">
-                        </form>
-                </div>
+               
                 <% }%>
             </div>
         </main>
