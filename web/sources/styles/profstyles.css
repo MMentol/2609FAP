@@ -1,5 +1,14 @@
 @import "main.css";
 
+header {
+    position: fixed;
+}
+
+main {
+    flex-direction: column !important;
+    margin-top: 8%;
+}
+
 .info-container {
     background: var(--primary);
     width: 80%;
@@ -7,13 +16,27 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 35px;
+    border: solid 3.5px var(--highlights);
+    margin: 1rem 0;
+}
+
+.order-holder {
+    background: var(--secondary);
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 35px;
+    border: solid 3.5px var(--primary);
+    margin: 1rem 0;
 }
 
 .info-holder {
-    display: block;
-    flex-flow: row;
-    align-items: center;
-    justify-content: center;
+    display: inline-block;
+    justify-content: space-around;
+    width: 100%;
 }
 
 #user-img {
@@ -21,20 +44,80 @@
     height: 250px;
     object-fit: cover;
     border-radius: 250px;
-    border: solid 3.5px var(--highlights);
+    border: solid 3.5px var(--secondary);
 }
 
 .in-liner {
     min-height: 100%;
+    height: 100%;
+    
 }
 
 .in-liner.left {
     float: left;
+    margin: 2rem 5rem;
 }
 
 .in-liner.right {
     float: right;
     display: flex;
     flex-direction: column;
+    margin: 2rem 2rem;
+}
+
+.text-holder {
+    flex-direction: unset;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 100%;
+}
+
+h1 {
+    display: block;
+    font-family: var(--headings2);
+    font-size: 2.5em;
+    margin: 1em 0 0.5em;
+    color: #FFFFFF;
+}
+
+h4 {
+    display: block;
+    margin: 0.5em 0;
+    color: #FFFFFF;
+    font-family: var(--headings2);
+    font-size: 28px;
+}
+
+#value-text {
+    display: block;
+    color: var(--highlights);
+    font-family: var(--headings);
+    font-size: 24px;
+}
+
+hr {
+    width: 80%;
+}
+
+main a {
+    margin: 3rem auto;
+}
+
+.shop-button {
+    height: 6vh;
+    width: 40vw; 
+    border: solid 3.5px var(--highlights);
+    border-radius: 25px;
+    background-color: var(--secondary);
+    color: #FFFFFF;
+    padding: auto 2rem;
+    font-weight: bolder;
+    font-size: 24px;
+    font-family: var(--headings2);
+}
+
+.shop-button:hover {
+    box-shadow: 0px 0px 8px var(--tertiary);
+    cursor: pointer;
 }

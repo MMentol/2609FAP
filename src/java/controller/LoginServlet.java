@@ -95,9 +95,13 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             while (rs.next()) {
                 //if login attempt is valid
+                
+                // put code here that queries stock table for orders w/ user's corresponding user_id
                 session.setAttribute("EMAIL", Crypto.decrypt(rs.getString("USER_EMAIL"), publicKey, cip));
                 session.setAttribute("USERNAME", Crypto.decrypt(rs.getString("USER_NAME"), publicKey, cip));
                 session.setAttribute("ADDRESS", Crypto.decrypt(rs.getString("USER_ADDRESS"), publicKey, cip));
+                session.setAttribute("ID", rs.getString("USER_ID"));
+                // add resultset containing orders user made as attribute
                 session.removeAttribute("message");
                 response.sendRedirect("profile.jsp");
                 return;

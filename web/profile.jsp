@@ -19,38 +19,39 @@
         <header>
             <nav class="nav-bar">                
                 <img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png">  
-                <% if (session.getAttribute("EMAIL") != null) { %>
                 <form action="Logout" method="post">                                        
-                    <input type="submit" class="header-button" value="HOME">                    
-                </form>
-                <% } 
-                else { %>
-                <ul class="nav-list">                                        
-                    <li class="nav-item"><a href="landing.jsp">HOME</a></li>
-                </ul>
-                <%}%>
+                    <input type="submit" class="logout-button" value="LOG OUT">
+                </form>     
             </nav>
         </header>
                 
         <main>   
             <div class="info-container">
                 <h1>User Profile</h1>
+                <hr>
                 <div id="info-holder">
                     <div class="in-liner left">
-                        <img id="user-img" src="${pageContext.request.contextPath}/sources/icons/sample_img.png">
+                        <img id="user-img" src="${pageContext.request.contextPath}/sources/icons/user.png">
                     </div>
                     <div class="in-liner right">
                         <div id="text-holder">
-                            <h4>Username: </h4>
+                            <h4>Username </h4>
                             <p id="value-text">${USERNAME}</p>
                         </div>
                         <div id="text-holder">
-                            <h4>Address: </h4>
+                            <h4>Address </h4>
                             <p id="value-text">${ADDRESS}</p>
                         </div>
                     </div>
                 </div>
             </div>
+                        
+            <div class="order-holder">
+                <h1>Your Orders</h1>
+                <hr>
+            </div>
+           
+           <a href="shop.jsp"><button class="shop-button">Go to Shop</button></a>
         </main>
                 
         <footer>

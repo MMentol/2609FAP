@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iceCOOL.co - Confirm Order</title>      
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/styles/profstyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/styles/checkstyles.css">
         <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/sources/icons/icfav.png">
     </head>
     <body>
@@ -19,16 +19,9 @@
         <header>
             <nav class="nav-bar">                
                 <img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png">   
-                <% if (session.getAttribute("EMAIL") != null) { %>
                 <form action="Logout" method="post">                                        
-                    <input type="submit" class="header-button" value="HOME">                    
+                    <input type="submit" class="logout-button" value="LOG OUT">
                 </form>
-                <% } 
-                else { %>
-                <ul class="nav-list">                                        
-                    <li class="nav-item"><a href="landing.jsp">HOME</a></li>
-                </ul>
-                <%}%>
             </nav>
         </header>
                 
