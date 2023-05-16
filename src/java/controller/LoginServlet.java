@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import nl.captcha.Captcha;
 import model.Crypto;
+import model.ShopInitializer;
 
 public class LoginServlet extends HttpServlet {
     private static byte[] publicKey;
@@ -113,7 +115,9 @@ public class LoginServlet extends HttpServlet {
                 dbQuery = "SELECT * FROM STOCK";
                 ps = dbConnection.prepareStatement(dbQuery);
                 rs = ps.executeQuery();
-                session.setAttribute("STOCK", rs);
+                ShopInitializer si = new ShopInitializer();
+                HashMap stock = si.initStock(rs);
+                session.setAttribute("STOCK", stock);
                 
                 session.removeAttribute("message");
                 response.sendRedirect("profile.jsp");
