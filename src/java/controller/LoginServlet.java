@@ -110,6 +110,11 @@ public class LoginServlet extends HttpServlet {
                 rs = ps.executeQuery();
                 session.setAttribute("ORDERS", rs);
                 
+                dbQuery = "SELECT * FROM STOCK";
+                ps = dbConnection.prepareStatement(dbQuery);
+                rs = ps.executeQuery();
+                session.setAttribute("STOCK", rs);
+                
                 session.removeAttribute("message");
                 response.sendRedirect("profile.jsp");
                 return;

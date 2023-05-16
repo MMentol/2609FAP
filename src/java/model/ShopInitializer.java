@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 
 public class ShopInitializer {
+    
+    
     public ArrayList<ShopItem> initStock(ResultSet rs){
         ArrayList<ShopItem> stonk = new ArrayList();
         
