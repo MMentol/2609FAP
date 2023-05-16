@@ -1,12 +1,16 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.*" %>
+<%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iceCOOL.co - Shop</title>      
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/styles/shopstyles.css">
-        <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/sources/icons/icfav.png">
+
+        <title>Bountiful Basket - Shop</title>      
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/shopstyles.css">
     </head>
+    
     <body>
         <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -17,22 +21,69 @@
             }
         %>
         <header>
-            <nav class="nav-bar">                
-                <img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png">  
-                <form action="Logout" method="post">                                        
-                    <input type="submit" class="logout-button" value="LOG OUT">
-                </form>
+            <nav class="nav-bar">
+               
+                    <img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogowhite.png">
+              
+                          
+                <div class="profile-holder">
+                    <img id="user-logo" src="${pageContext.request.contextPath}/sources/user.png">
+                    <h1>
+                      
+                        ${userID}
+                        
+                       
+                    </h1>
+                    
+                    <form action="UserLogout.do" method="post">                                        
+                        <input type="submit" class="header-button" value="Log Out">                    
+                    </form>
+                    
+                </div>
             </nav>
         </header>
-                
-        <main>                
-            <h1>shop page</h1><br>
-            <h3>USERNAME: </h3><p>${USERNAME}</p>
+            
+        <main>
+            <div class="side-wrapper">
+                <div class="left-side">
+                    <h1>Our Products</h1>
+                    <hr class="line-break">
+                    <div class="stock-holder">                                                
+                        
+                        <%                        
+                            ArrayList<ShopItem> stockList = new ShopInitializer().initStock();
+                            ArrayList<ShopItem> currentCart = (ArrayList<ShopItem>) session.getAttribute("userCart");
+                            CartUtils utility = new CartUtils();
+                            for (int i = 0; i < stockList.size(); i++) {
+                                ShopItem currentItem = stockList.get(i);
+                        %>
+                        <div class="shop-item">
+                            <img class="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>">
+                            <h3><%out.print(currentItem.getName());%></h3>
+                            <p>₱<%out.print(currentItem.getPrice());%></p>
+                            <%
+                                if ( (session.getAttribute("userID") != null) && !utility.inList(currentCart, currentItem.getID()) ){
+                            %>
+                            <form action="CartProcess.do" method="post">         
+                                <button class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>">Add to Cart</button>             
+                            </form>
+                            <%  }
+                                else if ((session.getAttribute("userID") != null) && utility.inList(currentCart, currentItem.getID())) { %>
+                            <button class="addCartButton" disabled>In Cart</button>
+                            <%  } %>
+                        </div>
+                        <%  } %>
+                        
+                    </div>                       
+                </div>
+               
+            </div>
         </main>
                 
         <footer>
-            <div class="footer-text"><p>Final Academic Project (FAP) for ICS2609.</p></div>
-            <div class="footer-text"><p>Made By: Articulo, De Leon, T., Robles, J. - 2CSB</p></div>      
+            <div class="footer-text"><p>This website was created in fulfillment of the course requirements for ICS2608.</p></div>
+            <div class="footer-text"><p>Made By: Articulo, De Leon, T., Macuja, Robles, J. - 2CSB</p></div>      
         </footer>
-    </body>
+                
+    </body> 
 </html>
