@@ -8,17 +8,17 @@
         <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/sources/icons/icfav.png">
     </head>
     <body>        
-        <%--%
+        <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Expires", "0");        
 
             if (session.getAttribute("USERNAME") != null) {
                 response.sendRedirect("profile.jsp");
             }
-        %--%>
+        %>
         <header>
             <nav class="nav-bar">                
-                <a class="toLanding" href="landing.jsp"><img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png"></a>   
+                <img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png">
                 <% if (session.getAttribute("message") != null) { %>
                 <form action="Logout" method="post">                                        
                     <input type="submit" class="header-button" value="HOME">                    

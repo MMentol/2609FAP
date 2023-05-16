@@ -25,7 +25,7 @@
     height: unset;
 }
 #captcha {
-    margin: 3rem auto 0;
+    margin: 1.5rem auto 0;
     display: block;
     align-items: center;
 }
@@ -112,21 +112,4 @@ h2 {
     text-align: center;
     font-family: var(--body-text);
     color: var(--error);
-}
-
-.header-button {
-    border-style: none;
-    background-color: rgba(0,0,0,0);
-    font-weight: bolder;
-    font-size: 32px;    
-    height: 100%;
-    padding: 0 3rem;
-    display: block;
-    color: #FFFFFF;
-    font-family: var(--headings2);
-}
-
-.header-button:hover {
-    background-color: var(--secondary);
-    cursor: pointer;
 }
