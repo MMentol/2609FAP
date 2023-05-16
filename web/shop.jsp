@@ -1,4 +1,5 @@
 
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.*" %>
 <%@page import="java.util.ArrayList" %>
@@ -50,10 +51,10 @@
                     <hr class="line-break">
                     <div class="stock-holder">                                                
                         
-                        <%                        
-                            ArrayList<ShopItem> stockList = new ShopInitializer().initStock();
-                            ArrayList<ShopItem> currentCart = (ArrayList<ShopItem>) session.getAttribute("userCart");
-                            CartUtils utility = new CartUtils();
+                        <%      
+                            
+                            ArrayList<ShopItem> stockList = new ShopInitializer().initStock((ResultSet)session.getAttribute("STOCKS"));
+                            
                             for (int i = 0; i < stockList.size(); i++) {
                                 ShopItem currentItem = stockList.get(i);
                         %>
@@ -61,16 +62,11 @@
                             <img class="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>">
                             <h3><%out.print(currentItem.getName());%></h3>
                             <p>₱<%out.print(currentItem.getPrice());%></p>
-                            <%
-                                if ( (session.getAttribute("userID") != null) && !utility.inList(currentCart, currentItem.getID()) ){
-                            %>
+                           
                             <form action="CartProcess.do" method="post">         
-                                <button class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>">Add to Cart</button>             
+                                <button class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>">Image</button>             
                             </form>
-                            <%  }
-                                else if ((session.getAttribute("userID") != null) && utility.inList(currentCart, currentItem.getID())) { %>
-                            <button class="addCartButton" disabled>In Cart</button>
-                            <%  } %>
+                            
                         </div>
                         <%  } %>
                         
