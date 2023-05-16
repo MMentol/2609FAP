@@ -83,6 +83,21 @@ public class RegisterServlet extends HttpServlet {
             }
             rs.close();
             
+            //Checks if id has been used already
+            dbQuery = "SELECT * FROM USERS WHERE USER_ID = ?";
+            pState = dbConnection.prepareStatement(dbQuery);
+            pState.setString(1, userid);
+            rs = pState.executeQuery();
+            while(rs.next()){
+                rs.close();
+                userid = idG.generateUserId();
+                dbQuery = "SELECT * FROM USERS WHERE USER_ID = ?";
+                pState = dbConnection.prepareStatement(dbQuery);
+                pState.setString(1, userid);
+                rs = pState.executeQuery();
+            }
+            rs.close();
+            
             //Adding user into db
             dbQuery = "INSERT INTO USERS(USER_ID, USER_NAME, USER_EMAIL, USER_PASS, USER_ADDRESS) VALUES(?,?,?,?,?)";
             pState = dbConnection.prepareStatement(dbQuery);
