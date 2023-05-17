@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="model.ShopItem"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,6 +31,29 @@
         <main>                
             <h1>shop page</h1><br>
             <h3>USERNAME: </h3><p>${USERNAME}</p>
+            <div class="left-side">
+                <h1>Our Products</h1>
+                <hr class="line-break">
+                <div class="stock-holder">                                                
+
+                    <%
+                        HashMap<String, ShopItem> stockList = (HashMap) session.getAttribute("STOCK");
+
+                        for (Map.Entry<String, ShopItem> i : stockList.entrySet()) {
+                            ShopItem currentItem = i.getValue();
+
+                    %>
+                    <div class="shop-item">                        
+                        <%-- to do: add action to handle appropriate item forwarding to load checkout page correctly --%>
+                        <form method="post">         
+                            <button class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>"><img class="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>"></button>             
+                        </form>
+
+                    </div>
+                    <% }%>
+
+                </div>                       
+            </div>
         </main>
                 
         <footer>
