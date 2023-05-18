@@ -1,16 +1,35 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.ShopItem;
 
 public class DynamicHandler extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession cUser = request.getSession();
+        ShopItem item;
         
+        // Prepare necessary information.
+        HashMap<String, ShopItem> stockList = (HashMap) cUser.getAttribute("STOCK");
+        String chosenItem = (String) request.getParameter("selectedItem");
+        
+        for (Map.Entry<String, ShopItem> pair : stockList.entrySet()) {
+            String key = pair.getKey();
+            
+            if (key.equals(chosenItem) == true) {
+                item = pair.getValue();
+                cUser.setAttribute("chosen-item", item);
+                response.sendRedirect("checkout.jsp");
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

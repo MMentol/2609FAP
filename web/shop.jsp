@@ -53,8 +53,8 @@
                         %>
                         <div class="shop-item">                        
                             <%-- to do: add action to handle appropriate item forwarding to load checkout page correctly --%>
-                            <form method="post">         
-                                <button class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>"><img id="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>"></button>             
+                            <form action="Handle" method="post">         
+                                <button class="addCartButton" type="submit" id="selectedItem" name="selectedItem" value="<%=currentItem.getID()%>"><img id="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>"></button>             
                             </form>
                         </div>
                         <% }%>

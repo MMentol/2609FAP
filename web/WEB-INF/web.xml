@@ -82,15 +82,15 @@
         <servlet-class>controller.CancelServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DynamicHandler</servlet-name>
+        <servlet-class>controller.DynamicHandler</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CustomCaptcha</servlet-name>
         <servlet-class>model.CustomSimpleCaptcha</servlet-class>
     </servlet>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
     <!--> Servlet Mapping <-->
-    <servlet>
-        <servlet-name>DynamicHandler</servlet-name>
-        <servlet-class>controller.DynamicHandler</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -116,14 +116,14 @@
         <url-pattern>/Cancel</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>DynamicHandler</servlet-name>
+        <url-pattern>/Handle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CustomCaptcha</servlet-name>
         <url-pattern>/CustomCaptcha</url-pattern>
     </servlet-mapping>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
-    <servlet-mapping>
-        <servlet-name>DynamicHandler</servlet-name>
-        <url-pattern>/Handle</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
