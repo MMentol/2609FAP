@@ -5,7 +5,7 @@ INSERT INTO STOCK VALUES('1002','Panasonic CS/CU-XPU9WKQ 1.0 HP Split Type Air C
 INSERT INTO STOCK VALUES('1003','LG Air Conditioner Split Type 1.5 HP HSN12IPX
 ',40999,'lg.webp');
 INSERT INTO STOCK VALUES('1004','Fujidenzo PAC-150AIG 1.5 HP Portable Air Conditioner
-',16999,'fuji.png');
+',16999,'fuji.jpg');
 INSERT INTO STOCK VALUES('1005','Carrier WCARJ012EEV 1.5 HP Window Type Air Conditioner
 ',32999,'carrier.webp');
 INSERT INTO STOCK VALUES('1006','Panasonic S-24PB3Q6 3HP Floor Standing Tower Air Conditioner
