@@ -27,8 +27,20 @@
         </header>
                 
         <main>                
-            <h1>success page</h1><br>
-            <h3>USERNAME: </h3><p>${USERNAME}</p>
+            <div class="main-wrapper">
+                <img id="site-logo" src="${pageContext.request.contextPath}/sources/delivery.png">
+                <h2>Thank you for your purchase!</h2>
+                <p class="body-text">Your order has been confirmed and is being processed.</p>
+                <p class="body-text">To see a detailed summary of your order, you may view the order invoice by pressing the “Check Invoice” button below.</p>
+                <p class="body-text">You may choose to place another order by shopping again or log out and exit by choosing either of the buttons below.</p>
+                <div class="button-holder">
+                    <form action="Order.done" method="post">
+                        <button class="check-button" type="submit" name="checkInvoice" value="gimmemonez">Check Invoice</button>
+                        <button class="common-button" type="submit" name="continueShop" value="lemmeback">Shop Again</button>
+                        <button class="special-button" type="submit" name="logoutExit" value="broke">Log Out and Exit</button>
+                    </form>
+                </div>
+            </div>
         </main>
                 
         <footer>
