@@ -87,6 +87,10 @@
     </servlet>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
     <!--> Servlet Mapping <-->
+    <servlet>
+        <servlet-name>DynamicHandler</servlet-name>
+        <servlet-class>controller.DynamicHandler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -102,7 +106,7 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/Register</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>InvoiceServlet</servlet-name>
         <url-pattern>/Invoice</url-pattern>
@@ -115,7 +119,11 @@
         <servlet-name>CustomCaptcha</servlet-name>
         <url-pattern>/CustomCaptcha</url-pattern>
     </servlet-mapping>
-    <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->    
+    <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
+    <servlet-mapping>
+        <servlet-name>DynamicHandler</servlet-name>
+        <url-pattern>/Handle</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
