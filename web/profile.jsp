@@ -74,12 +74,10 @@
                             <td><p id="table-text">₱<%=orders.getString("STOCK_PRICE")%></p></td>
                             <td>
                                 <div id="button-holder">
-                                    <%-- to do: add action to servlet handling reports --%>
                                     <form action="Invoice" target="_blank" method="post">     
                                         <button class="table-button report" type="submit" id="order-id" name="order-id" value="<%=orders.getString("ORDER_ID")%>">Get Invoice</button>
                                     </form>
-                                    <%-- to do: add action to servlet handling order removal --%>
-                                    <form action="" method="post">   
+                                    <form action="Cancel" method="post">   
                                         <button class="table-button remove" type="submit" id="order-id" name="order-id" value="<%=orders.getString("ORDER_ID")%>">Cancel Order</button>                              
                                     </form>
                                 </div>
