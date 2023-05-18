@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,8 +27,59 @@
         </header>
                 
         <main>                
-            <h1>checkout page</h1>
-            <h3>USERNAME: </h3><p>${USERNAME}</p>
+             <div class="order-holder">
+                <h1>Your Orders</h1>
+                <hr>
+                <div class="user-orders">
+                    <table id="order-items">
+                        <tr>
+                            <th></th>
+                            <th>Order Code</th>
+                            <th>Item Code</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                        <%
+                            
+                            ResultSet orders = (ResultSet) session.getAttribute("ORDERS");
+                            
+                            while(orders.next()) {
+                        %>
+                        <tr>
+                            <td><img id="small-thumb" src="${pageContext.request.contextPath}/sources/img/<%=orders.getString("STOCK_IMG")%>"></td>
+                            <td><p id="table-text"><%=orders.getString("ORDER_ID")%></p></td>
+                            <td><p id="table-text"><%=orders.getString("STOCK_ID")%></p></td>
+                            <td><p id="table-text"><%=orders.getString("STOCK_NAME")%></p></td>
+                            <td><p id="table-text">₱<%=orders.getString("STOCK_PRICE")%></p></td>
+                            <td>
+                               
+                            </td>
+                        </tr>
+                        <%
+                            }
+                            if (orders.isAfterLast()) {
+                                orders.beforeFirst();
+                            }
+                        %>
+                    </table>
+                    </div>
+                   <div class="after-items">
+                    <hr class="line-break">
+                    <table class="bottom-table">
+                        <tr>
+                            <td><h3>Total Order Cost:</h3></td>
+                            <td><p>₱<%= formatter.format(session.getAttribute("totalCost"))%></p></td>
+                        </tr>                            
+                        <tr>
+                            <form action="Checkout.do" method="post">
+                            <td><button class="common-button" type="submit" name="returnShop" value="capitalism">Cancel Order</button></td>
+                            <td><button class="special-button" type="submit" name="proceedCheckout" value="brokenow">Proceed and Place Order</button></td>
+                            </form>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </main>
                 
         <footer>
