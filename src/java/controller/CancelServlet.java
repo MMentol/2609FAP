@@ -29,13 +29,13 @@ public class CancelServlet extends HttpServlet {
                     "://" + context.getInitParameter("dbHost") +
                     ":" + context.getInitParameter("dbPort") +
                     "/" + context.getInitParameter("dbName");
-            System.out.println("[Debug] Established connection to database: " + dbURL);
-                                   
+            
             dbConnection = DriverManager.getConnection(dbURL, context.getInitParameter("dbUName"), context.getInitParameter("dbPass"));
+            System.out.println("[Debug] Established connection to database: " + dbURL);
         }
         catch (ClassNotFoundException | SQLException ex) {
-            System.out.println("A connection to the database could not be established.");
-            // To change: specfiy an exception to throw and a corresponding error page.
+            System.out.println("[!] A connection to the database could not be established.");
+            throw new ServletException();
         }     
     }
 
@@ -65,7 +65,8 @@ public class CancelServlet extends HttpServlet {
             response.sendRedirect("profile.jsp");
         } 
         catch (SQLException sqle) {
-             System.out.println("[!] Query could not be performed. L + Ratio + Database fell off lmaoooo");
+            System.out.println("[!] Query could not be performed. L + Ratio + Database fell off lmaoooo");
+            throw new ServletException();
         }
     }
 

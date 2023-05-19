@@ -27,20 +27,26 @@
         </header>
                 
         <main>                
-            <div class="main-wrapper">
-                <img id="site-logo" src="${pageContext.request.contextPath}/sources/delivery.png">
-                <h2>Thank you for your purchase!</h2>
-                <p class="body-text">Your order has been confirmed and is being processed.</p>
-                <p class="body-text">To see a detailed summary of your order, you may view the order invoice by pressing the “Check Invoice” button below.</p>
-                <p class="body-text">You may choose to place another order by shopping again or log out and exit by choosing either of the buttons below.</p>
-                <div class="button-holder">
-                    <form action="Invoice" method="post">
-                        <button class="check-button" type="submit" name="checkInvoice" value="gimmemonez">Check Invoice</button>
+            <div class="parent-holder">                
+                <div class="content-holder">
+                    <img id="check-picture" src="${pageContext.request.contextPath}/sources/icons/checkout.png">
+                    <h2>Thank you for your purchase!</h2>
+                </div>   
+                <div class="content-holder">
+                    <p class="body-text">Your order has been confirmed and is now being processed.</p>
+                    <p class="body-text">An invoice containing full details regarding your order can be obtained by pressing the <span class="emphasized">Check Invoice</span> button below.</p>
+                    <p class="body-text">You can also get this invoice and manage your other orders through your <span class="emphasized">Profile</span>.</p>
+                    <p class="body-text">You may choose to <span class="emphasized">Continue Shopping</span> or <span class="emphasized">Log Out and Exit</span> by selecting the
+                        corresponding buttons below.</p>
+                    <div class="button-holder">
+                        <form action="Invoice" target="_blank" method="post">     
+                            <button class="function-button" type="submit" id="order-id" name="order-id" value="<%=session.getAttribute("order-id")%>">Check Invoice</button>
                         </form>
-                     <a class="toShop" href="shop.jsp"><button class="common-button">Continue Shopping</button></a>
-                        <form action="Logout" method="post">
-                        <button class="special-button" type="submit" name="logoutExit" value="broke">Log Out and Exit</button>
-                    </form>
+                        <a href="shop.jsp"><button id="shopb" class="function-button">Continue Shopping</button></a>                        
+                        <form action="Logout" method="post">                                        
+                            <button class="function-button" id="logb" type="submit">Log Out and Exit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </main>

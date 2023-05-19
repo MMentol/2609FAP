@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>404 Error</title>      
+        <title>Database Error</title>      
         <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/styles/errorstyles.css">
         <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/sources/icons/icfav.png">
     </head>
@@ -16,13 +16,14 @@
         <main>
             <div class="parent-holder">
                 <div class="content-holder">
-                    <img id="error-picture" src="${pageContext.request.contextPath}/sources/icons/empty.png">
+                    <img id="error-picture" src="${pageContext.request.contextPath}/sources/icons/move.png">
                 </div>   
                 <div class="content-holder">
-                    <h1 class="error-type">404... That's an error!</h1>
-                    <p class="error-info">The specified resource could not be found.</p>
-                    <p class="error-info">This may have been caused by an error on our part or because of a mistake in the spelling of the name of the file you're looking for in the address bar.</p>
-                    <p class="error-info">In any case, you can recover from this error and reset by pressing the button below.</p>
+                    <h1 class="error-type">A database error occurred.</h1>
+                    <p class="error-info">A problem was encountered when trying to connect to, query, or update the application's database or load a page requiring content from the application's database.</p>
+                    <p class="error-info">Please ensure that you are connected to the database and it is configured correctly. The database should be named "iceCoolDB" (case-sensitive) 
+                        and should have the tables listed in the project README file.</p>
+                    <p class="error-info">After following the steps above, you can reset the application by pressing the button below.</p>
                     <form action="Logout" method="post">                                        
                         <input type="submit" class="reset-button" value="Return to Home">
                     </form>

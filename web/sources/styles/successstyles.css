@@ -1,104 +1,91 @@
 @import "main.css";
 
+header {
+    position: fixed;
+}
 
-.main-wrapper {
+main {
+    margin-top: 6%;
+}
+
+.parent-holder {
     width: 80%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-holder:first-of-type {
+    width: 40%;
+    padding: 1em;
+    margin: 0 1em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
+}
+
+#check-picture {    
+    width: 80%;
+    height: 80%;
+    min-height: 80%;
+    min-width: 80%;
+    display: block;
+    max-width: 80%;
+    object-fit: fill;
 }
 
 h2 {
-    text-align: center;
-    font-size: 36pt;
-    line-height: 0.6;
     color: var(--secondary);
-    text-shadow: 2px 2px 3px var(--tertiary);
-    font-family: var(--special);
+    font-family: var(--headings2);
+    font-size: 2rem;
+    text-align: center;
 }
 
-.main-wrapper #site-logo {
-    width: 20%;
-    max-width: 20%;
-    height: 20%;
-    max-height: 20%;
+.content-holder:last-of-type {
+    width: 60%;
+    padding: 3em;
+    margin: 0 1em;
 }
 
 .body-text {
-    text-align: center;
+    text-align: justify;
+    text-justify: auto;
     font-family: var(--body-text);
     color: var(--dark);
-    font-size: 14pt;
+    font-size: 18pt;
 }
 
 .button-holder {
-    margin: 1em 0;
-    width: 100%;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2em 0 0;
 }
 
-.special-button {    
-    border-style: solid;
-    border-radius: 30px;
-    height: 70px;
-    width: 35%;
-    color: #FFFFFF;    
+.function-button {
+    width: auto;
+    padding: 0 1em;
+    height: 75px;
+    margin: 0 auto;
     font-family: var(--headings2);
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-color: var(--primary);
+    font-size: 16pt;
     background-color: var(--secondary);
-    display: block;
-    margin: 1em 3em;
-    float: right;
+    color: #FFFFFF;
+    border: solid 3.5px var(--highlights);
+    border-radius: 25px;
+    text-align: center;
 }
 
-.special-button:hover {
+#shopb {
+    border: solid 3.5px goldenrod;
+}
+
+#logb {
+    border: solid 3.5px var(--error);
+}
+
+.function-button:hover {
+    box-shadow: 0px 0px 4px var(--dark);
     cursor: pointer;
-    box-shadow: 0px 0px 8px var(--primary);
-}
-
-.common-button {    
-    border-style: solid;
-    border-radius: 30px;
-    height: 70px;
-    width: 35%;
-    color: #FFFFFF;    
-    font-family: var(--headings2);
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-color: var(--primary);
-    background-color: var(--tertiary);
-    display: block;
-    margin: 1em 3em;
-    float: left;
-}
-
-.common-button:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 8px var(--primary);
-}
-
-
-.check-button {    
-    border-style: solid;
-    border-radius: 30px;
-    height: 70px;
-    width: 35%;
-    color: #FFFFFF;    
-    font-family: var(--headings2);
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-color: var(--primary);
-    background-color: var(--secondary);
-    display: block;
-    margin: auto;
-    
-}
-
-.check-button:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 8px var(--primary);
 }

@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>404 Error</title>      
+        <title>500 Error</title>      
         <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/styles/errorstyles.css">
         <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/sources/icons/icfav.png">
     </head>
@@ -16,12 +16,12 @@
         <main>
             <div class="parent-holder">
                 <div class="content-holder">
-                    <img id="error-picture" src="${pageContext.request.contextPath}/sources/icons/empty.png">
+                    <img id="error-picture" src="${pageContext.request.contextPath}/sources/icons/server.png">
                 </div>   
                 <div class="content-holder">
-                    <h1 class="error-type">404... That's an error!</h1>
-                    <p class="error-info">The specified resource could not be found.</p>
-                    <p class="error-info">This may have been caused by an error on our part or because of a mistake in the spelling of the name of the file you're looking for in the address bar.</p>
+                    <h1 class="error-type">500... That's an error!</h1>
+                    <p class="error-info">An error occurred within the server.</p>
+                    <p class="error-info">This may have been caused by an unaccounted programming error the developers were not aware of... or maybe the session died.</p>
                     <p class="error-info">In any case, you can recover from this error and reset by pressing the button below.</p>
                     <form action="Logout" method="post">                                        
                         <input type="submit" class="reset-button" value="Return to Home">

@@ -37,20 +37,19 @@
                 <div class="content-holder">
                     <h1><%= loadedItem.getName()%></h1>
                     <h3>₱<%= loadedItem.getPrice()%></h3>
-                    <%--TO DO: link to joseph's adding servlet idk --%>
-                    <form action="" method="post">
+                    <form action="Checkout" method="post">
                         <fieldset>
                             <legend>Payment Method</legend>
-                            <input type="radio" id="codb" name="payment" value="COD">
+                            <input type="radio" id="codb" name="payment" value="CoD">
                             <label for="codb">Cash on Delivery</label>
                             <input type="radio" id="creditb" name="payment" value="Credit">
                             <label for="creditb">Credit Card</label>
                         </fieldset>
                         <fieldset>
                             <legend>Monthly Installment</legend>
-                            <input type="radio" id="ye" name="installment" value="true">
+                            <input type="radio" id="ye" name="install" value="true">
                             <label for="ye">Yes</label>
-                            <input type="radio" id="nah" name="installment" value="false">
+                            <input type="radio" id="nah" name="install" value="false">
                             <label for="nah">No</label>
                         </fieldset>
                         <button class="proceedButton" type="submit">Place Order</button>
