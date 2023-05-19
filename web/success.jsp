@@ -34,9 +34,11 @@
                 <p class="body-text">To see a detailed summary of your order, you may view the order invoice by pressing the “Check Invoice” button below.</p>
                 <p class="body-text">You may choose to place another order by shopping again or log out and exit by choosing either of the buttons below.</p>
                 <div class="button-holder">
-                    <form action="Order.done" method="post">
+                    <form action="Invoice" method="post">
                         <button class="check-button" type="submit" name="checkInvoice" value="gimmemonez">Check Invoice</button>
-                        <button class="common-button" type="submit" name="continueShop" value="lemmeback">Shop Again</button>
+                        </form>
+                     <a class="toShop" href="shop.jsp"><button class="common-button">Continue Shopping</button></a>
+                        <form action="Logout" method="post">
                         <button class="special-button" type="submit" name="logoutExit" value="broke">Log Out and Exit</button>
                     </form>
                 </div>
