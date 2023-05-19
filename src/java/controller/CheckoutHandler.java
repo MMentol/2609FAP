@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,13 +30,13 @@ public class CheckoutHandler extends HttpServlet {
                     "://" + context.getInitParameter("dbHost") +
                     ":" + context.getInitParameter("dbPort") +
                     "/" + context.getInitParameter("dbName");
-            System.out.println("[Debug] Established connection to database: " + dbURL);
-                                   
+            
             dbConnection = DriverManager.getConnection(dbURL, context.getInitParameter("dbUName"), context.getInitParameter("dbPass"));
+            System.out.println("[Debug] Established connection to database: " + dbURL);
         }
         catch (ClassNotFoundException | SQLException ex) {
-            System.out.println("A connection to the database could not be established.");
-            // To change: specfiy an exception to throw and a corresponding error page.
+            System.out.println("[!] A connection to the database could not be established.");
+            throw new ServletException();
         }     
     }
 
@@ -53,11 +52,6 @@ public class CheckoutHandler extends HttpServlet {
         idGen iG = new idGen();
         String orderID = iG.generateOrderId();
         
-        cUser.setAttribute("unconnectMsg", null);
-        cUser.setAttribute("userExists", null);
-        
-        
-
         try {
             String dbQuery = "SELECT * FROM ORDERS WHERE ORDER_ID = ?";
             PreparedStatement pState = dbConnection.prepareStatement(dbQuery);
@@ -71,25 +65,29 @@ public class CheckoutHandler extends HttpServlet {
                 pState.setString(1, orderID);
                 rs = pState.executeQuery();
             }
-            rs.close();
-            
             
             dbQuery = "INSERT INTO ORDERS(ORDER_ID, STOCK_ID, ORDER_PAYMENT, ORDER_INSTALL, USER_ID) VALUES(?,?,?,?,?)";
             pState = dbConnection.prepareStatement(dbQuery);
-            pState.setString(1, iG.generateOrderId());
+            pState.setString(1, orderID);
             pState.setString(2, stockID);
             pState.setString(3, orderPayment);
             pState.setString(4, install);
             pState.setString(5, userID);
             pState.executeUpdate();
-            cUser.setAttribute("successMsg", "Order processed!");
-            response.sendRedirect("success.jsp");
+            cUser.setAttribute("order-id", orderID);
             
+            // Refresh order list for displaying back to user.
+            dbQuery = "SELECT STOCK.STOCK_IMG, ORDERS.ORDER_ID, STOCK.STOCK_ID, STOCK.STOCK_NAME, STOCK.STOCK_PRICE FROM ORDERS LEFT JOIN STOCK ON ORDERS.STOCK_ID=STOCK.STOCK_ID WHERE ORDERS.USER_ID=?";
+            pState = dbConnection.prepareStatement(dbQuery, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            pState.setString(1, userID);
+            rs = pState.executeQuery();
+            cUser.setAttribute("ORDERS", rs);
+            
+            response.sendRedirect("success.jsp");
            
-        } catch (Exception ex) {
-            System.out.println(ex);
-            cUser.setAttribute("unconnectMsg", "Unable to connect to database.");
-            response.sendRedirect("checkout.jsp");
+        } catch (SQLException ex) {
+            System.out.println("[!] Update could not be performed.");
+            throw new ServletException();
         } 
     }
 

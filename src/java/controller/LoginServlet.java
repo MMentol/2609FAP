@@ -36,13 +36,13 @@ public class LoginServlet extends HttpServlet {
                     "://" + context.getInitParameter("dbHost") +
                     ":" + context.getInitParameter("dbPort") +
                     "/" + context.getInitParameter("dbName");
-            System.out.println("[Debug] Established connection to database: " + dbURL);
                                    
             dbConnection = DriverManager.getConnection(dbURL, context.getInitParameter("dbUName"), context.getInitParameter("dbPass"));
+            System.out.println("[Debug] Established connection to database: " + dbURL);
         }
         catch (ClassNotFoundException | SQLException ex) {
-            System.out.println("A connection to the database could not be established.");
-            // To change: specfiy an exception to throw and a corresponding error page.
+            System.out.println("[!] A connection to the database could not be established.");
+            throw new ServletException();
         }     
     }
     
@@ -100,8 +100,8 @@ public class LoginServlet extends HttpServlet {
             cUser.setAttribute("message", "Email/Username or Password is incorrect.\nPlease try again.");
             response.sendRedirect("login.jsp");
         } catch (SQLException e) {
-            cUser.setAttribute("message", "Unable to connect to database.");
-            response.sendRedirect("login.jsp");
+            System.out.println("[!] Query could not be performed.");
+            throw new ServletException();
         }
     }
 

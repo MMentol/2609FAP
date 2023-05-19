@@ -1,1 +1,91 @@
 @import "main.css";
+
+header {
+    position: fixed;
+}
+
+main {
+    margin-top: 6%;
+}
+
+.parent-holder {
+    width: 80%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-holder:first-of-type {
+    width: 40%;
+    padding: 1em;
+    margin: 0 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#check-picture {    
+    width: 80%;
+    height: 80%;
+    min-height: 80%;
+    min-width: 80%;
+    display: block;
+    max-width: 80%;
+    object-fit: fill;
+}
+
+h2 {
+    color: var(--secondary);
+    font-family: var(--headings2);
+    font-size: 2rem;
+    text-align: center;
+}
+
+.content-holder:last-of-type {
+    width: 60%;
+    padding: 3em;
+    margin: 0 1em;
+}
+
+.body-text {
+    text-align: justify;
+    text-justify: auto;
+    font-family: var(--body-text);
+    color: var(--dark);
+    font-size: 18pt;
+}
+
+.button-holder {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2em 0 0;
+}
+
+.function-button {
+    width: auto;
+    padding: 0 1em;
+    height: 75px;
+    margin: 0 auto;
+    font-family: var(--headings2);
+    font-size: 16pt;
+    background-color: var(--secondary);
+    color: #FFFFFF;
+    border: solid 3.5px var(--highlights);
+    border-radius: 25px;
+    text-align: center;
+}
+
+#shopb {
+    border: solid 3.5px goldenrod;
+}
+
+#logb {
+    border: solid 3.5px var(--error);
+}
+
+.function-button:hover {
+    box-shadow: 0px 0px 4px var(--dark);
+    cursor: pointer;
+}

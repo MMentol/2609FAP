@@ -8,7 +8,7 @@
     <body>
         <h1>Utility Page</h1>
         <h2>Click on the buttons to go to that specific page.</h2>
-        <h2>Proper functionality not ensured (ie session dependent functions).</h2>
+        <h2>Proper functionality not ensured (ie: session dependent functions and content).</h2>
         <br>
         <hr>
         <br>main pages<br>
@@ -21,6 +21,8 @@
         <a href="success.jsp"><button>Checkout Success Page</button></a><br>
         <br>error pages<br>
         <a href="error-404.jsp"><button>Error 404</button></a><br>
+        <a href="error-500.jsp"><button>Error 500</button></a><br>
+        <a href="error-db.jsp"><button>Database Error</button></a><br>
         <br>
         <hr>
         <h3>Freedom Wall Segment - feel free to add here to complain about coding or something idk</h3>
