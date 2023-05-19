@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -13,7 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import nl.captcha.Captcha;
+import model.ShopItem;
+import model.idGen;
 
 public class CheckoutHandler extends HttpServlet {
     Connection dbConnection;
@@ -43,40 +45,51 @@ public class CheckoutHandler extends HttpServlet {
             throws ServletException, IOException {
         HttpSession cUser = request.getSession();
         
-        String stockID = request.getParameter("uname");
+        ShopItem item = (ShopItem) cUser.getAttribute("chosen-item");
+        String stockID = item.getID();
         String orderPayment = request.getParameter("payment");
         String install = request.getParameter("install");
         String userID = (String) cUser.getAttribute("ID");
-        
+        idGen iG = new idGen();
+        String orderID = iG.generateOrderId();
         
         cUser.setAttribute("unconnectMsg", null);
         cUser.setAttribute("userExists", null);
+        
+        
 
-        Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
-        String answer = request.getParameter("captcha");
-        if (!captcha.isCorrect(answer)) {
-
-            request.getSession().setAttribute("failCaptcha", "Captcha verification failed, please try again!");
-            response.sendRedirect("adminpage.jsp");
-            return;
-        }
         try {
-            String dbQuery = "INSERT INTO ORDERS(ORDER_ID, STOCK_ID, ORDER_PAYMENT, ORDER_INSTALL, USER_ID) VALUES(?,?,?,?,?)";
+            String dbQuery = "SELECT * FROM ORDERS WHERE ORDER_ID = ?";
             PreparedStatement pState = dbConnection.prepareStatement(dbQuery);
-            pState.setString(1, "seq_person.nextval");
+            pState.setString(1, orderID);
+            ResultSet rs = pState.executeQuery();
+            while(rs.next()){
+                rs.close();
+                orderID = iG.generateUserId();
+                dbQuery = "SELECT * FROM ORDERS WHERE ORDER_ID = ?";
+                pState = dbConnection.prepareStatement(dbQuery);
+                pState.setString(1, orderID);
+                rs = pState.executeQuery();
+            }
+            rs.close();
+            
+            
+            dbQuery = "INSERT INTO ORDERS(ORDER_ID, STOCK_ID, ORDER_PAYMENT, ORDER_INSTALL, USER_ID) VALUES(?,?,?,?,?)";
+            pState = dbConnection.prepareStatement(dbQuery);
+            pState.setString(1, iG.generateOrderId());
             pState.setString(2, stockID);
             pState.setString(3, orderPayment);
             pState.setString(4, install);
             pState.setString(5, userID);
             pState.executeUpdate();
             cUser.setAttribute("successMsg", "Order processed!");
-            response.sendRedirect("profile.jsp");
+            response.sendRedirect("success.jsp");
             
            
         } catch (Exception ex) {
-            
+            System.out.println(ex);
             cUser.setAttribute("unconnectMsg", "Unable to connect to database.");
-            response.sendRedirect("shop.jsp");
+            response.sendRedirect("checkout.jsp");
         } 
     }
 
