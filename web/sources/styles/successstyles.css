@@ -1,1 +1,104 @@
 @import "main.css";
+
+
+.main-wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: 36pt;
+    line-height: 0.6;
+    color: var(--secondary);
+    text-shadow: 2px 2px 3px var(--tertiary);
+    font-family: var(--special);
+}
+
+.main-wrapper #site-logo {
+    width: 20%;
+    max-width: 20%;
+    height: 20%;
+    max-height: 20%;
+}
+
+.body-text {
+    text-align: center;
+    font-family: var(--body-text);
+    color: var(--dark);
+    font-size: 14pt;
+}
+
+.button-holder {
+    margin: 1em 0;
+    width: 100%;
+    display: inline-block;
+}
+
+.special-button {    
+    border-style: solid;
+    border-radius: 30px;
+    height: 70px;
+    width: 35%;
+    color: #FFFFFF;    
+    font-family: var(--headings2);
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-color: var(--primary);
+    background-color: var(--secondary);
+    display: block;
+    margin: 1em 3em;
+    float: right;
+}
+
+.special-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 8px var(--primary);
+}
+
+.common-button {    
+    border-style: solid;
+    border-radius: 30px;
+    height: 70px;
+    width: 35%;
+    color: #FFFFFF;    
+    font-family: var(--headings2);
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-color: var(--primary);
+    background-color: var(--tertiary);
+    display: block;
+    margin: 1em 3em;
+    float: left;
+}
+
+.common-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 8px var(--primary);
+}
+
+
+.check-button {    
+    border-style: solid;
+    border-radius: 30px;
+    height: 70px;
+    width: 35%;
+    color: #FFFFFF;    
+    font-family: var(--headings2);
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-color: var(--primary);
+    background-color: var(--secondary);
+    display: block;
+    margin: auto;
+    
+}
+
+.check-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 8px var(--primary);
+}

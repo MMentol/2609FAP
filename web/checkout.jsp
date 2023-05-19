@@ -48,9 +48,9 @@
                         </fieldset>
                         <fieldset>
                             <legend>Monthly Installment</legend>
-                            <input type="radio" id="ye" name="payment" value="true">
+                            <input type="radio" id="ye" name="installment" value="true">
                             <label for="ye">Yes</label>
-                            <input type="radio" id="nah" name="payment" value="false">
+                            <input type="radio" id="nah" name="installment" value="false">
                             <label for="nah">No</label>
                         </fieldset>
                         <button class="proceedButton" type="submit">Place Order</button>
