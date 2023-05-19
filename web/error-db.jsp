@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>404 Error</title>      
+        <title>Database Error</title>      
         <link rel="stylesheet" href="${pageContext.request.contextPath}/sources/styles/errorstyles.css">
         <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/sources/icons/icfav.png">
     </head>
@@ -20,7 +20,7 @@
                 </div>   
                 <div class="content-holder">
                     <h1 class="error-type">A database error occurred.</h1>
-                    <p class="error-info">A problem was encountered when trying to connect to, query, or update the application's database.</p>
+                    <p class="error-info">A problem was encountered when trying to connect to, query, or update the application's database or load a page requiring content from the application's database.</p>
                     <p class="error-info">Please ensure that you are connected to the database and it is configured correctly. The database should be named "iceCoolDB" (case-sensitive) 
                         and should have the tables listed in the project README file.</p>
                     <p class="error-info">After following the steps above, you can reset the application by pressing the button below.</p>

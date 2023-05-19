@@ -68,12 +68,13 @@ public class CheckoutHandler extends HttpServlet {
             
             dbQuery = "INSERT INTO ORDERS(ORDER_ID, STOCK_ID, ORDER_PAYMENT, ORDER_INSTALL, USER_ID) VALUES(?,?,?,?,?)";
             pState = dbConnection.prepareStatement(dbQuery);
-            pState.setString(1, iG.generateOrderId());
+            pState.setString(1, orderID);
             pState.setString(2, stockID);
             pState.setString(3, orderPayment);
             pState.setString(4, install);
             pState.setString(5, userID);
             pState.executeUpdate();
+            cUser.setAttribute("order-id", orderID);
             
             // Refresh order list for displaying back to user.
             dbQuery = "SELECT STOCK.STOCK_IMG, ORDERS.ORDER_ID, STOCK.STOCK_ID, STOCK.STOCK_NAME, STOCK.STOCK_PRICE FROM ORDERS LEFT JOIN STOCK ON ORDERS.STOCK_ID=STOCK.STOCK_ID WHERE ORDERS.USER_ID=?";
@@ -82,8 +83,7 @@ public class CheckoutHandler extends HttpServlet {
             rs = pState.executeQuery();
             cUser.setAttribute("ORDERS", rs);
             
-            // debugging. should send user to success instead of profile.
-            response.sendRedirect("profile.jsp");
+            response.sendRedirect("success.jsp");
            
         } catch (SQLException ex) {
             System.out.println("[!] Update could not be performed.");
