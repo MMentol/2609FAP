@@ -38,7 +38,7 @@
                     <h1><%= loadedItem.getName()%></h1>
                     <h3>₱<%= loadedItem.getPrice()%></h3>
                     <%--TO DO: link to joseph's adding servlet idk --%>
-                    <form action="" method="post">
+                    <form action="Checkout" method="post">
                         <fieldset>
                             <legend>Payment Method</legend>
                             <input type="radio" id="codb" name="payment" value="COD">
