@@ -35,13 +35,13 @@ public class RegisterServlet extends HttpServlet {
                     "://" + context.getInitParameter("dbHost") +
                     ":" + context.getInitParameter("dbPort") +
                     "/" + context.getInitParameter("dbName");
-            System.out.println("[Debug] Established connection to database: " + dbURL);
-                                   
+            
             dbConnection = DriverManager.getConnection(dbURL, context.getInitParameter("dbUName"), context.getInitParameter("dbPass"));
+            System.out.println("[Debug] Established connection to database: " + dbURL);
         }
         catch (ClassNotFoundException | SQLException ex) {
-            System.out.println("A connection to the database could not be established.");
-            // To change: specfiy an exception to throw and a corresponding error page.
+            System.out.println("[!] A connection to the database could not be established.");
+            throw new ServletException();
         }   
     }
 
@@ -122,10 +122,9 @@ public class RegisterServlet extends HttpServlet {
             cUser.removeAttribute("message");
             response.sendRedirect("profile.jsp");
             
-        } catch (Exception ex) {
-            // To change: specfiy an exception to throw and a corresponding error page.
-            cUser.setAttribute("message", "Unable to connect to database.");
-            response.sendRedirect("register.jsp");
+        } catch (SQLException sqlex) {
+            System.out.println("[!] Update could not be performed.");
+            throw new ServletException();
         } 
     }
 
