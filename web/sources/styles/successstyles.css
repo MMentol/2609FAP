@@ -67,9 +67,9 @@ h2 {
     width: auto;
     padding: 0 1em;
     height: 75px;
-    margin: 0 auto;
+    margin: 0 2em;
     font-family: var(--headings2);
-    font-size: 16pt;
+    font-size: 1.25em;
     background-color: var(--secondary);
     color: #FFFFFF;
     border: solid 3.5px var(--highlights);

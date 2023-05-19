@@ -19,10 +19,7 @@
         %>       
         <header>
             <nav class="nav-bar">                
-                <img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png">  
-                <form action="Logout" method="post">                                        
-                    <input type="submit" class="logout-button" value="LOG OUT">
-                </form>
+                <img id="logo-text" src="${pageContext.request.contextPath}/sources/icons/iceCOOL_NAME_W.png">
             </nav>
         </header>
                 

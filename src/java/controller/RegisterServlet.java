@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import nl.captcha.Captcha;
 import model.Crypto;
+import model.ShopInitializer;
 import model.idGen;
 
 public class RegisterServlet extends HttpServlet {
@@ -111,13 +113,20 @@ public class RegisterServlet extends HttpServlet {
             cUser.setAttribute("EMAIL", enteredEm);
             cUser.setAttribute("USERNAME", enteredUN);
             cUser.setAttribute("ADDRESS", enteredAd);
-            cUser.setAttribute("USER_ID", userid);
+            cUser.setAttribute("ID", userid);
                         
             dbQuery = "SELECT STOCK.STOCK_IMG, ORDERS.ORDER_ID, STOCK.STOCK_ID, STOCK.STOCK_NAME, STOCK.STOCK_PRICE FROM ORDERS LEFT JOIN STOCK ON ORDERS.STOCK_ID=STOCK.STOCK_ID WHERE ORDERS.USER_ID=?";
             pState = dbConnection.prepareStatement(dbQuery, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pState.setString(1, userid);
             rs = pState.executeQuery();
             cUser.setAttribute("ORDERS", rs);
+            
+            dbQuery = "SELECT * FROM STOCK";
+            pState = dbConnection.prepareStatement(dbQuery);
+            rs = pState.executeQuery();
+            ShopInitializer si = new ShopInitializer();
+            HashMap stock = si.initStock(rs);
+            cUser.setAttribute("STOCK", stock);
             
             cUser.removeAttribute("message");
             response.sendRedirect("profile.jsp");
