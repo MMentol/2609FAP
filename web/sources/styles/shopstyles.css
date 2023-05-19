@@ -1,1 +1,133 @@
 @import "main.css";
+
+.parent-holder {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-holder {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 35px;
+    border: solid 3.5px var(--highlights);
+    margin: 1rem 0;
+    background: var(--primary);
+}
+
+.holding-item {
+    width: 20%;
+    text-align: right;
+    margin: 0 5%;
+}
+
+.holding-item:last-of-type {
+    width: 60%;
+    text-align: left;
+}
+
+#user-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 250px;
+    border: solid 3.5px var(--secondary);
+    margin: 10% 0;
+}
+
+h2 {
+    display: block;
+    margin: 0.5em 0;
+    color: #FFFFFF;
+    font-family: var(--headings2);
+    font-size: 1.75rem;
+}
+
+h2 span {
+    color: var(--highlights);
+    font-family: var(--headings);
+    font-size: 1.75rem;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 3px solid var(--secondary);
+    line-height: 0.1em;
+    margin: 1.25em 0;
+    font-size: 42pt;
+    color: var(--secondary);
+    text-shadow: 2px 2px 4px #C0C0C0;
+    font-family: var(--headings);
+} 
+
+h1 span { 
+    background: var(--background); 
+    padding: 0 20px; 
+}
+
+.stock-category {
+    border: solid 2px var(--primary);
+    border-radius: 10px;
+    padding: 1em;
+    margin: 2rem 0;
+    width: 100%;
+    box-shadow: 0px 0px 4px var(--highlights);
+}
+
+.product-label {
+    font-size: 32pt;
+    color: var(--secondary);
+    text-shadow: 2px 2px 4px #C0C0C0;
+    font-family: var(--headings2);
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.cliffhanger {
+    text-align: center;
+    font-family: var(--headings);
+    color: var(--tertiary);
+    font-size: 40pt;
+    text-shadow: 1px 1px 4px var(--highlights);
+}
+
+.stock-holder {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+#thumbnail {
+    width: 450px;
+    height: 450px;
+    min-height: 100%;
+    display: block;
+    object-fit: fill;
+    background: #FFFFFF;
+    border: solid 3.5px var(--highlights);
+    border-radius: 10px;
+}
+
+button {
+    background-color: unset;
+    border: none;
+    transition: all .15s ease-in-out;
+    padding: 0;
+    border-radius: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 8px var(--primary);
+    transform: scale(1.1);
+}
