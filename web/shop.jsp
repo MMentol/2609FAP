@@ -36,6 +36,7 @@
                     </div>
                     <div class="holding-item">
                         <h2>Hello there, <span>${USERNAME}</span>!</h2>
+                        <a href="profile.jsp"><button class="return-button">Return to Profile</button></a>
                     </div>
                 </div>
                 
