@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="model.ShopItem"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,9 +28,50 @@
             </nav>
         </header>
                 
-        <main>                
-            <h1>shop page</h1><br>
-            <h3>USERNAME: </h3><p>${USERNAME}</p>
+        <main>      
+            <div class="parent-holder">
+                <div class="profile-holder">
+                    <div class="holding-item">
+                        <img id="user-img" src="${pageContext.request.contextPath}/sources/icons/user.png">
+                    </div>
+                    <div class="holding-item">
+                        <h2>Hello there, <span>${USERNAME}</span>!</h2>
+                    </div>
+                </div>
+                
+                <h1><span>Our Products</span></h1>
+                
+                <div class="stock-category">
+                    <h3 class="product-label">Air Conditioners</h3>
+                    <div class="stock-holder">
+                        <%
+                            HashMap<String, ShopItem> stockList = (HashMap) session.getAttribute("STOCK");
+
+                            for (Map.Entry<String, ShopItem> i : stockList.entrySet()) {
+                                ShopItem currentItem = i.getValue();
+
+                        %>
+                        <div class="shop-item">                        
+                            <%-- to do: add action to handle appropriate item forwarding to load checkout page correctly --%>
+                            <form action="Handle" method="post">         
+                                <button class="addCartButton" type="submit" id="selectedItem" name="selectedItem" value="<%=currentItem.getID()%>"><img id="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>"></button>             
+                            </form>
+                        </div>
+                        <% }%>
+                    </div>
+                </div>
+                
+                <div class="stock-category">
+                    <h3 class="product-label">Coolers</h3>
+                    <p class="cliffhanger">-COMING SOON-</p>
+                </div>
+                
+                <div class="stock-category">
+                    <h3 class="product-label">Refridgerators</h3>
+                    <p class="cliffhanger">-COMING SOON-</p>
+                </div>
+                
+            </div>
         </main>
                 
         <footer>

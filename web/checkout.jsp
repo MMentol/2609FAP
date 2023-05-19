@@ -1,3 +1,4 @@
+<%@page import="model.ShopItem"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,9 +26,37 @@
             </nav>
         </header>
                 
-        <main>                
-            <h1>checkout page</h1>
-            <h3>USERNAME: </h3><p>${USERNAME}</p>
+        <main>
+            <div class="parent-holder">
+                <%
+                    ShopItem loadedItem = (ShopItem) session.getAttribute("chosen-item");
+                %>
+                <div class="content-holder">
+                    <img id="product-picture" src="${pageContext.request.contextPath}/sources/img/<%= loadedItem.getPic()%>">
+                </div>   
+                <div class="content-holder">
+                    <h1><%= loadedItem.getName()%></h1>
+                    <h3>₱<%= loadedItem.getPrice()%></h3>
+                    <%--TO DO: link to joseph's adding servlet idk --%>
+                    <form action="" method="post">
+                        <fieldset>
+                            <legend>Payment Method</legend>
+                            <input type="radio" id="codb" name="payment" value="COD">
+                            <label for="codb">Cash on Delivery</label>
+                            <input type="radio" id="creditb" name="payment" value="Credit">
+                            <label for="creditb">Credit Card</label>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Monthly Installment</legend>
+                            <input type="radio" id="ye" name="payment" value="true">
+                            <label for="ye">Yes</label>
+                            <input type="radio" id="nah" name="payment" value="false">
+                            <label for="nah">No</label>
+                        </fieldset>
+                        <button class="proceedButton" type="submit">Place Order</button>
+                    </form>
+                </div>
+            </div>
         </main>
                 
         <footer>

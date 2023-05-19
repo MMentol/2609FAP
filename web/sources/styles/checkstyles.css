@@ -1,1 +1,93 @@
 @import "main.css";
+
+header {
+    position: fixed;
+}
+
+main {
+    margin-top: 6%;
+}
+
+.parent-holder {
+    width: 80%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-holder {
+    width: 40%;
+    padding: 1em;
+    margin: 0 1em;
+}
+
+#product-picture {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    display: block;
+    max-width: 100%;
+    object-fit: fill;
+    background: #FFFFFF;
+    border: solid 3.5px var(--highlights);
+    box-shadow: 0px 0px 8px var(--primary);
+}
+
+.content-holder:last-of-type {
+    width: 60%;
+    padding: 3em;
+    margin: 0 1em;
+}
+
+h1 {
+    font-size: 32pt;
+    color: var(--secondary);
+    font-family: var(--headings2);
+    margin: 0.5em 0;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+h3 {
+    color: var(--secondary);
+    font-family: var(--headings);
+    font-size: 1.75rem;
+}
+
+fieldset {
+    margin: 1em auto;
+    padding: 1em 1.5em;
+    border: solid 2.5px var(--primary);
+    font-family: var(--body-text);
+    font-size: 16pt;
+}
+
+fieldset legend {
+    font-family: var(--headings2);
+    color: var(--primary);
+}
+
+input[type="radio"] {
+    margin: 0 2em -3em;
+}
+
+.proceedButton {
+    width: 50%;
+    height: 50px;
+    margin: .35em auto;
+    font-family: var(--headings2);
+    font-size: 18pt;
+    background-color: var(--tertiary);
+    color: #FFFFFF;
+    border-radius: 25px;
+    border: solid 3.5px var(--highlights);
+    text-align: center;
+}
+
+.proceedButton:hover {
+    background-color: var(--secondary);
+    box-shadow: 0px 0px 8px var(--primary);
+    cursor: pointer;
+}
