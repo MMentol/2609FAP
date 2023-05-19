@@ -54,33 +54,7 @@ public class LoginServlet extends HttpServlet {
         
         HttpSession cUser = request.getSession();        
         Captcha verify = (Captcha) cUser.getAttribute(Captcha.NAME);
-        
-        /*
-            To add:
-                Turn public key retrieved from servlet context into a byte array.
-                Obtain encryption mode (AES).
-        
-                Method to check login attempts before sending user back to landing.
-        
-            Logic:
-                Use a prepared statement to select the user with the given email OR username from users table.
-                * Username/Email is ENCRYPTED so it must be decrypted first before comparing.
-        
-                Check if captcha is correct before checking for matches.
-                If captcha is correct and a match is found, decrypt the password and compare it to the password entered by the user.
                 
-                If any of these checks fail, inform user what they got wrong (username/email, password, or captcha) then 
-                reduce user's login attempts before having them try again.
-        
-                Login attempts should ideally not be handled with a session but brain smol and that's what I did lmfao
-                basically if login attempts will be reduced, just include the number of attempts left as an attribute then add logic to see if it's 0 alr                      
-        
-                Note: "What if there are users with the same username in the system since it's not a primary key and we're using it
-                to find users in the DB???"
-                - Register servlet will prevent users from having the same usernames/emails.
-                    Statement will always return exactly one user if the entered credentials are correct.
-        */
-        
         if (!verify.isCorrect(answer)) {
             response.sendRedirect("login.jsp");
             request.getSession().setAttribute("message", "Captcha verification failed, please try again!");

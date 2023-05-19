@@ -1,198 +1,93 @@
 @import "main.css";
 
-
-.order-holder {
-    background: var(--secondary);
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 35px;
-    border: solid 3.5px var(--primary);
-    margin: 1rem 0;
+header {
+    position: fixed;
 }
 
-
-h1 {
-    display: block;
-    font-family: var(--headings2);
-    font-size: 2.5em;
-    margin: 1em 0 0.5em;
-    color: #FFFFFF;
+main {
+    margin-top: 6%;
 }
 
-
-
-#value-text {
-    display: block;
-    color: var(--highlights);
-    font-family: var(--headings);
-    font-size: 24px;
-}
-
-hr {
+.parent-holder {
     width: 80%;
-}
-
-main a {
-    margin: 3rem auto;
-}
-
-.shop-button {
-    height: 6vh;
-    width: 40vw; 
-    border: solid 3.5px var(--highlights);
-    border-radius: 25px;
-    background-color: var(--secondary);
-    color: #FFFFFF;
-    padding: auto 2rem;
-    font-weight: bolder;
-    font-size: 24px;
-    font-family: var(--headings2);
-}
-
-.shop-button:hover {
-    box-shadow: 0px 0px 8px var(--tertiary);
-    cursor: pointer;
-}
-
-.user-orders {
-    width: 100%;
+    height: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#order-items {
-    table-layout: fixed;
-    width: 95%;
-    margin: 2em 0;
+.content-holder {
+    width: 40%;
+    padding: 1em;
+    margin: 0 1em;
 }
 
-#order-items th {
-    width: 20%;
-    font-family: var(--headings2);
-    color: var(--primary);
-    text-shadow: .5px .5px 5px var(--secondary);
-    font-size: 20pt;
-    padding: 0.5em 0;
-    text-align: center;
-}
-
-#order-items td {
-    width: auto;
-    height: 30%;
-    text-align: center;
-    margin: 0 2em; 
-}
-
-#small-thumb {
-    width: 150px;
-    height: 150px;
+#product-picture {
+    width: 100%;
+    height: 100%;
     min-height: 100%;
+    min-width: 100%;
     display: block;
     max-width: 100%;
     object-fit: fill;
     background: #FFFFFF;
     border: solid 3.5px var(--highlights);
-    margin: 0 2em; 
+    box-shadow: 0px 0px 8px var(--primary);
 }
 
-#table-text {
-    display: inline-block;
+.content-holder:last-of-type {
+    width: 60%;
+    padding: 3em;
+    margin: 0 1em;
+}
+
+h1 {
+    font-size: 32pt;
+    color: var(--secondary);
+    font-family: var(--headings2);
+    margin: 0.5em 0;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+h3 {
+    color: var(--secondary);
+    font-family: var(--headings);
+    font-size: 1.75rem;
+}
+
+fieldset {
+    margin: 1em auto;
+    padding: 1em 1.5em;
+    border: solid 2.5px var(--primary);
     font-family: var(--body-text);
     font-size: 16pt;
-    line-height: 0.8;
-    width: 80%;
-    text-align: center;
-    color: #FFFFFF;
 }
 
-.table-button {
-    width: 80%;
-    height: 45px;
-    margin: .35em 0;
+fieldset legend {
     font-family: var(--headings2);
-    font-size: 16pt;
+    color: var(--primary);
+}
+
+input[type="radio"] {
+    margin: 0 2em -3em;
+}
+
+.proceedButton {
+    width: 50%;
+    height: 50px;
+    margin: .35em auto;
+    font-family: var(--headings2);
+    font-size: 18pt;
     background-color: var(--tertiary);
     color: #FFFFFF;
     border-radius: 25px;
-}
-
-.table-button.report {
     border: solid 3.5px var(--highlights);
-}
-
-.table-button.remove {
-    border: solid 3.5px var(--error);
-}
-
-.table-button.report:hover, .table-button.remove:hover {
-    background-color: var(--secondary);
-    box-shadow: 0px 0px 8px var(--primary);
-    cursor: pointer;
-}
-
-
-.line-break {
-    border-width: 3px;
-    width: 95%;
-    color: var(--primary);
-    border-style: solid none none;
-    margin: 2em 0;
-}
-
-.bottom-table td {
-    width: 50%;
-    height: 30%;
     text-align: center;
 }
 
-.bottom-table td h3 {
-    font-family: var(--headings2);
-    color: #FFFFFF;
-    font-size: 20pt;
-    text-align: right;
-    text-shadow: .5px .5px 3px var(--secondary);
-}
-
-.special-button {    
-    border-style: solid;
-    border-radius: 30px;
-    height: 70px;
-    width: 90%;
-    color: #FFFFFF;    
-    font-family: var(--headings2);
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-color: var(--primary);
+.proceedButton:hover {
     background-color: var(--secondary);
-    display: block;
-    margin: 2em auto;
-}
-
-.special-button:hover {
-    cursor: pointer;
     box-shadow: 0px 0px 8px var(--primary);
-}
-
-.common-button {    
-    border-style: solid;
-    border-radius: 30px;
-    height: 70px;
-    width: 90%;
-    color: #FFFFFF;    
-    font-family: var(--headings2);
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-color: var(--secondary);
-    background-color: var(--teriary );
-    display: block;
-    margin: 2em auto;
-}
-
-.common-button:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 8px var(--primary);
 }

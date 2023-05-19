@@ -29,7 +29,10 @@
         <p> master round</p>
 
         <p>i push and i pull and i push and i pull</p>
-        <p>g'raha tia my beloved i wanna pet u so bad my beloved red-head tsundere catboy</p>
+        <br>
+        <p>g'raha tia my beloved red-head tsundere catboy i wanna pet u again so bad aaaaaaaAAAAAAAAA I HATE FINALS PERIOD SO MUCH</p>
+        <p>- thms (no i am not going insane)</p>
+        <img id="user-img" src="${pageContext.request.contextPath}/sources/icons/sample_img.png">
 
     </body>
 </html>

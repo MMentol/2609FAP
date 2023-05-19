@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-
     <!--> Web Application-related context parameters. <-->
     <context-param>
         <param-name>generalPhone</param-name>
@@ -23,16 +22,15 @@
         <param-value>ICS_2609FAP_2609</param-value>
     </context-param>
     <context-param>
-            <param-name>cipher</param-name>
-            <param-value>AES/ECB/PKCS5PADDING</param-value>
+        <param-name>cipher</param-name>
+        <param-value>AES/ECB/PKCS5PADDING</param-value>
     </context-param>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
-    
     <!--> Database-related context parameters. <-->
     <context-param>
         <param-name>dbClass</param-name>
         <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
-    </context-param>    
+    </context-param>
     <context-param>
         <param-name>dbUName</param-name>
         <param-value>app</param-value>
@@ -58,7 +56,6 @@
         <param-value>iceCoolDB</param-value>
     </context-param>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
-    
     <!--> Servlet Declarations <-->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
@@ -77,11 +74,22 @@
         <servlet-class>controller.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>InvoiceServlet</servlet-name>
+        <servlet-class>controller.InvoiceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelServlet</servlet-name>
+        <servlet-class>controller.CancelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DynamicHandler</servlet-name>
+        <servlet-class>controller.DynamicHandler</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CustomCaptcha</servlet-name>
         <servlet-class>model.CustomSimpleCaptcha</servlet-class>
     </servlet>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
-    
     <!--> Servlet Mapping <-->
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -94,27 +102,36 @@
     <servlet-mapping>
         <servlet-name>CheckoutServlet</servlet-name>
         <url-pattern>/Checkout</url-pattern>
-    </servlet-mapping>          
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvoiceServlet</servlet-name>
+        <url-pattern>/Invoice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelServlet</servlet-name>
+        <url-pattern>/Cancel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DynamicHandler</servlet-name>
+        <url-pattern>/Handle</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomCaptcha</servlet-name>
         <url-pattern>/CustomCaptcha</url-pattern>
     </servlet-mapping>
     <!--> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <-->
-
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <welcome-file-list>
         <welcome-file>landing.jsp</welcome-file>
     </welcome-file-list>
-    
     <error-page>
         <error-code>404</error-code>
         <location>/error-404.jsp</location>
