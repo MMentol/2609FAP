@@ -41,8 +41,7 @@
                 <div class="button-holder">
                     <a class="toLogin" href="login.jsp"><button class="common-button">Log into an Account</button></a>
                     <a class="toShop" href="register.jsp"><button class="common-button">Sign Up for an Account</button></a>
-                    <%-->href="${pageContext.request.contextPath}/sources/documentation.pdf" target="_blank" <--%>
-                    <a class="toShop" href="index.jsp"><button class="special-button common-button">[Debug] See Page Index</button></a>
+                    <a class="toShop" href="${pageContext.request.contextPath}/sources/documentation.pdf" target="_blank"><button class="special-button common-button">Check Documentation</button></a>
                 </div>     
                 <hr class="line-break">
                 <div id="site-information-a"></div>

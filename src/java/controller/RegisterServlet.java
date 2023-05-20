@@ -66,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
 
         Captcha captcha = (Captcha) cUser.getAttribute(Captcha.NAME);
         if (!captcha.isCorrect(answer)) {//Checks if Captcha is correct
-            request.getSession().setAttribute("message", "Captcha verification failed. Please try again.");
+            cUser.setAttribute("message", "Captcha verification failed. Please try again.");
             response.sendRedirect("register.jsp");
             return;
         }
